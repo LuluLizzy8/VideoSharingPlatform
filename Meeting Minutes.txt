@@ -60,7 +60,16 @@ March 14
   Viana: Finalized the midterm presentation materials and slides
   Smile: Finalized the midterm presentation materials and slides
 
+
 Iteration 3:
+Leftover from Last Iteration:
+  Upload Videos to Database
+  Save Video Details
+  Upload Thumbnails
+  Get Video Details 
+
+Prioritized List of Features to be implemented:
+  Creating backend classes
 March 21
 Elizabeth: Debugging and downloading relative dependencies on Windows, solving maven and npm issues
     	    - works but unexpectedly
