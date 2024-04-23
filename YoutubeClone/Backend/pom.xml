@@ -57,7 +57,6 @@
         <dependency>
 		    <groupId>io.awspring.cloud</groupId>
 		    <artifactId>spring-cloud-aws-starter</artifactId>
-		    <version>3.0.0</version>
 		</dependency>
 		<dependency>
 	        <groupId>software.amazon.awssdk</groupId>
