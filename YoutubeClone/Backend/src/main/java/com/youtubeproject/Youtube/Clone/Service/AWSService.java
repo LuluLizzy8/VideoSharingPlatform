@@ -9,21 +9,19 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import lombok.RequiredArgsConstructor;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 @Service
+@RequiredArgsConstructor
 public class AWSService implements FileService{
 	
 	public static final String BUCKET_NAME = "youtubeclone-seclass-2024";
 	private final S3Client awsS3Client;
-	
-	public AWSService(S3Client awsS3Client) {
-        this.awsS3Client = awsS3Client;
-    }
-	
+
 	@Override
 	public String uploadFile(MultipartFile file) {
 		//Prepare key

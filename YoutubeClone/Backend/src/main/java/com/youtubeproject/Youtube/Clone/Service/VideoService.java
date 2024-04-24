@@ -6,19 +6,16 @@ import org.springframework.web.multipart.MultipartFile;
 import com.youtubeproject.Youtube.Clone.Model.Video;
 import com.youtubeproject.Youtube.Clone.Repository.VideoRepository;
 
+import lombok.RequiredArgsConstructor;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.S3ServiceClientConfiguration;
 
 @Service
+@RequiredArgsConstructor
 public class VideoService {
 	
 	private final AWSService awsService;
 	private final VideoRepository videoRepository;
-	
-	public VideoService(AWSService awsService, VideoRepository videoRepository) {
-		this.awsService = awsService;
-		this.videoRepository = videoRepository;
-		}
 	
 	public void uploadVideo(MultipartFile multipartFile) {
 		String videoURL = awsService.uploadFile(multipartFile);

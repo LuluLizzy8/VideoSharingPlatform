@@ -6,15 +6,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.youtubeproject.Youtube.Clone.Service.VideoService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/videos")
 public class VideoController {
 	
 	private final VideoService videoService;
-	
-	public VideoController(VideoService videoService) {
-		this.videoService = videoService;
-	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
