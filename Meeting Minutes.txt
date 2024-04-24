@@ -92,3 +92,9 @@ Elizabeth: Uploaded backend Video and Comment class to Git; wrote VideoControlle
 Lunjia: Writing VideoService class of backend
 Viana: Writing User class of backend
 Smile: Writing RegisteredUser class of backend
+
+April 24
+Elizabeth: Angular upload video to AW3
+Lunjia: Angular upload video to AW3
+Viana: Create header component
+Smile: Create header component
