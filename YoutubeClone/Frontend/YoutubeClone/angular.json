@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "YoutubeCloneUI": {
+    "YoutubeClone": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/youtube-clone-ui",
+            "outputPath": "dist/youtube-clone",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -37,7 +37,12 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -67,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "YoutubeCloneUI:build:production"
+              "buildTarget": "YoutubeClone:build:production"
             },
             "development": {
-              "buildTarget": "YoutubeCloneUI:build:development"
+              "buildTarget": "YoutubeClone:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "YoutubeCloneUI:build"
+            "buildTarget": "YoutubeClone:build"
           }
         },
         "test": {
@@ -103,6 +108,6 @@
     }
   },
   "cli": {
-    "analytics": "2ddf76d8-c46d-4a7c-9029-f178c5842bb1"
+    "analytics": "3a1a5089-fdf0-4d93-8fa8-06902dbe8927"
   }
 }
