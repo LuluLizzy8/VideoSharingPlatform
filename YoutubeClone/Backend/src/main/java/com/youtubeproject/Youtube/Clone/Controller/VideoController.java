@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+//@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/videos")
 public class VideoController {
 	
