@@ -25,6 +25,7 @@ import { MatIconModule } from "@angular/material/icon";
     HttpClientModule,
     NgxFileDropModule,
     MatButtonModule,
+    MatToolbarModule,
     MatIconModule
   ],
   providers: [
