@@ -1,0 +1,18 @@
+.example-spacer {
+	flex: 1 1 auto;
+}
+
+mat-toolbar{
+	background-color: mediumpurple;
+	color:white;
+	margin: 0;
+	padding: 0;
+}
+
+/* reset margins */
+html, body { 
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
