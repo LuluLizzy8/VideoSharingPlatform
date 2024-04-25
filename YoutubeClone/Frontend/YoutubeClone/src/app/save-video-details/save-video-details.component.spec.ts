@@ -11,7 +11,9 @@ describe('SaveVideoDetailsComponent', () => {
       declarations: [SaveVideoDetailsComponent]
     })
     .compileComponents();
+  });
     
+  beforeEach(()=> {
     fixture = TestBed.createComponent(SaveVideoDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
