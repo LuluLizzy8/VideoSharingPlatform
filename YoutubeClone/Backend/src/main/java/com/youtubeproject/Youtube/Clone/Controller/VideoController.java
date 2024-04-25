@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.youtubeproject.Youtube.Clone.Service.VideoService;
+import com.youtubeproject.Youtube.Clone.dto.UploadVideoResponse;
 import com.youtubeproject.Youtube.Clone.dto.VideoDto;
 
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,8 @@ public class VideoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void uploadVideo(@RequestParam("file") MultipartFile file) {
-		videoService.uploadVideo(file);
+	public UploadVideoResponse uploadVideo(@RequestParam("file") MultipartFile file) {
+		return videoService.uploadVideo(file);
 	}
 	
 	@PostMapping("/thumbnail")

@@ -71,7 +71,7 @@ export class UploadVideoComponent {
 		
 		this.fileEntry.file(file => {
 			this.videoService.uploadVideo(file).subscribe(data =>{
-			console.log("Video uploaded successfully");
+
 			})
 		})
 		
