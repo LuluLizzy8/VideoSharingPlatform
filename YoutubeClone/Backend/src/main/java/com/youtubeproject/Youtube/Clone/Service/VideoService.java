@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.youtubeproject.Youtube.Clone.Model.Video;
 import com.youtubeproject.Youtube.Clone.Repository.VideoRepository;
+import com.youtubeproject.Youtube.Clone.dto.VideoDto;
 
 import lombok.RequiredArgsConstructor;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -24,6 +25,22 @@ public class VideoService {
 		video.setVideoUrl(videoURL);
 		
 		videoRepository.save(video);
+		
+	}
+
+	public VideoDto editVideo(VideoDto videoDto) {
+		//find the video by video id 
+		Video savedVideo = videoRepository.findById(videoDto.getId())
+			.orElseThrow(()->new IllegalArgumentException("video id not found" + videoDto.getId()));
+		
+		//map the videodto fields to video
+		savedVideo.setTitle(videoDto.getTitle());
+		savedVideo.setDescription(videoDto.getDescription());
+		savedVideo.setThumbnailUrl(videoDto.getThumbnailUrl());
+		
+		//save video to database
+		videoRepository.save(savedVideo);
+		return videoDto;
 		
 	}
 
