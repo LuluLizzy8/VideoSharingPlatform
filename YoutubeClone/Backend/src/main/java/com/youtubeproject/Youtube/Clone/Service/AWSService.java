@@ -26,7 +26,7 @@ public class AWSService implements FileService{
 	public String uploadFile(MultipartFile file) {
 		//Prepare key
 		var filenameExtension = StringUtils.getFilenameExtension(file.getOriginalFilename());
-		var key = UUID.randomUUID().toString() + filenameExtension;
+		var key = UUID.randomUUID().toString() + "." + filenameExtension;
 		
         //Create PutObjectRequest with metadata
 		PutObjectRequest putObjectRequest = PutObjectRequest.builder()
