@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { SaveVideoDetailsComponent } from './save-video-details/save-video-details.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SaveVideoDetailsComponent } from './save-video-details/save-video-detai
     NgxFileDropModule,
     MatButtonModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    FlexLayoutModule
   ],
   providers: [
     provideClientHydration()
