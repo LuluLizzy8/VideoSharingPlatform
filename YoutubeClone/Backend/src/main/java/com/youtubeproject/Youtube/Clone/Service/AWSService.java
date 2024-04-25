@@ -32,7 +32,7 @@ public class AWSService implements FileService{
 		PutObjectRequest putObjectRequest = PutObjectRequest.builder()
 				.bucket(BUCKET_NAME)
 				.key(key)
-//				.acl(ObjectCannedACL.PUBLIC_READ) 
+				.acl(ObjectCannedACL.PUBLIC_READ) 
 				.contentType(file.getContentType())
 				.build();
 		
