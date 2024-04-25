@@ -5,7 +5,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@EnableWebSecurity
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 	

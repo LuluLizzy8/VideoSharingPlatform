@@ -53,9 +53,6 @@
               <goal>npm</goal>
             </goals>
             <phase>generate-resources</phase>
-            <!--<configuration>
-              <arguments>run-script build</arguments>
-            </configuration> -->
           </execution>
         </executions>
       </plugin>
