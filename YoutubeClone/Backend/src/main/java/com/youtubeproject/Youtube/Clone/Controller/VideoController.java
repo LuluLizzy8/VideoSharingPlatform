@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/videos")
+@RequestMapping("/api/videos/")
 public class VideoController {
 	
 	private final VideoService videoService;
