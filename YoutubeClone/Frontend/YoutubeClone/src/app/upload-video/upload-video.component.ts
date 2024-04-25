@@ -13,7 +13,7 @@ export class UploadVideoComponent {
   fileUploaded: boolean = false;
   fileEntry: FileSystemFileEntry | undefined;
   
-  constructor(private videoService: VideoService){
+  constructor(private videoService: VideoService, private router: Router){
 	
   }
   
@@ -71,6 +71,8 @@ export class UploadVideoComponent {
 		
 		this.fileEntry.file(file => {
 			this.videoService.uploadVideo(file).subscribe(data =>{
+			//http://localhost:4200/save-video-details/{{videoId}}
+			this.router.navigateByUrl("/save-video-details/" + data.videoId);
 
 			})
 		})
