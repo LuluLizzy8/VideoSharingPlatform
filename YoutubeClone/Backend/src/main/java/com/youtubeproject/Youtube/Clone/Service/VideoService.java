@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.youtubeproject.Youtube.Clone.Model.Video;
 import com.youtubeproject.Youtube.Clone.Repository.VideoRepository;
+import com.youtubeproject.Youtube.Clone.dto.UploadVideoResponse;
 import com.youtubeproject.Youtube.Clone.dto.VideoDto;
 
 import lombok.RequiredArgsConstructor;
@@ -18,13 +19,15 @@ public class VideoService {
 	private final AWSService awsService;
 	private final VideoRepository videoRepository;
 	
-	public void uploadVideo(MultipartFile multipartFile) {
+	public UploadVideoResponse uploadVideo(MultipartFile multipartFile) {
 		String videoURL = awsService.uploadFile(multipartFile);
 		
 		var video = new Video();
 		video.setVideoUrl(videoURL);
 		
-		videoRepository.save(video);
+		var savedVideo = videoRepository.save(video);
+		
+		return new UploadVideoResponse(savedVideo.getId(), savedVideo.getVideoUrl());
 		
 	}
 
