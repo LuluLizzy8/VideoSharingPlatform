@@ -1,1 +1,36 @@
-<p>save-video-details works!</p>
+<div fxLayout = "row wrap">
+	<div fxFlex = "20%"> Hi </div>
+	
+	<div fxFlex = "30%">
+		<div class="mat-title"> Add Video Metadata </div>
+		
+		<form [formGroup]="saveVideoDetailsForm">
+			<mat-form-field>
+				<mat-label> Title </mat-label>
+				<input matInput [formControl]="title" required>
+			</mat-form-field>
+			
+			<mat-form-field>
+				<mat-label> Description </mat-label>
+				<input matInput [formControl]="description" required>
+			</mat-form-field>
+			
+			<!-- for video status, maybe implement later
+			<mat-form-field>
+				<mat-label> Video Status </mat-label>
+				<mat-select>
+			    	<mat-option value="one"> First option </mat-option>
+			    	<mat-option value="two"> Second option </mat-option>
+				</mat-select>
+			</mat-form-field> -->
+			
+			<button type="submit" mat-raised-button color="primary"> Save </button>
+		</form>
+	</div> 
+	
+	<div fxFlex = "30%">
+		Video Player 
+	</div> 
+	
+	<div fxFlex = "20%"> Hi </div>
+</div>
