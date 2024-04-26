@@ -26,13 +26,13 @@ public class AWSService implements FileService{
 	public String uploadFile(MultipartFile file) {
 		//Prepare key
 		var filenameExtension = StringUtils.getFilenameExtension(file.getOriginalFilename());
-		var key = UUID.randomUUID().toString() + filenameExtension;
+		var key = UUID.randomUUID().toString() + "." + filenameExtension;
 		
         //Create PutObjectRequest with metadata
 		PutObjectRequest putObjectRequest = PutObjectRequest.builder()
 				.bucket(BUCKET_NAME)
 				.key(key)
-//				.acl(ObjectCannedACL.PUBLIC_READ) 
+				.acl(ObjectCannedACL.PUBLIC_READ) 
 				.contentType(file.getContentType())
 				.build();
 		
