@@ -1,36 +1,35 @@
-<div fxLayout = "row wrap">
-	<div fxFlex = "20%"> Hi </div>
-	
-	<div fxFlex = "30%">
+<div class="save-video-detail">
+	<div class="button-bar"> Hi </div>
+	<div class="button-bar">
 		<div class="mat-title"> Add Video Metadata </div>
-		
-		<form [formGroup]="saveVideoDetailsForm">
-			<mat-form-field>
-				<mat-label> Title </mat-label>
-				<input matInput [formControl]="title" required>
-			</mat-form-field>
-			
-			<mat-form-field>
-				<mat-label> Description </mat-label>
-				<input matInput [formControl]="description" required>
-			</mat-form-field>
-			
-			<!-- for video status, maybe implement later
-			<mat-form-field>
-				<mat-label> Video Status </mat-label>
-				<mat-select>
-			    	<mat-option value="one"> First option </mat-option>
-			    	<mat-option value="two"> Second option </mat-option>
-				</mat-select>
-			</mat-form-field> -->
-			
-			<button type="submit" mat-raised-button color="primary"> Save </button>
+		<form>
+			<div class="form-input-text">
+				<mat-form-field appearance="fill">
+					<mat-label>Title</mat-label>
+					<input matInput placeholder="your title here" required>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Description</mat-label>
+					<input matInput	placeholder="your description here" required>
+				</mat-form-field>
+				<!-- for video status, maybe implement later
+				<mat-form-field>
+					<mat-label> Video Status </mat-label>
+					<mat-select>
+				    	<mat-option value="one"> First option </mat-option>
+				    	<mat-option value="two"> Second option </mat-option>
+					</mat-select>
+				</mat-form-field> -->
+				<p>
+					<button type="submit" mat-raised-button color="primary"> Save </button>
+				</p>
+			</div>
 		</form>
-	</div> 
+	</div>
 	
-	<div fxFlex = "30%">
-		Video Player 
-	</div> 
+	<div class="button-bar">
+		Video Player
+	</div>
 	
-	<div fxFlex = "20%"> Hi </div>
+	<div class="button-bar"> Hi </div>
 </div>

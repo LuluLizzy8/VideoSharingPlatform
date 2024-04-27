@@ -1,0 +1,15 @@
+.save-video-detail {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+}
+.button-bar{
+	width:25%;
+	/*text-align: center;*/
+}
+.mat-title{
+	font-size: 125%;
+}
+form{
+	margin-top: 30px;
+}
