@@ -1,15 +1,7 @@
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-.spacer {
+.example-spacer {
   flex: 1 1 auto;
 }
 .logo{
   color: white;
   text-decoration: none;
-}
-
-mat-toolbar{
-	background-color: #ffd2cf;
-	color: black; /*font color*/
-	font-size: 150%;
-	font-weight: 600;
 }
