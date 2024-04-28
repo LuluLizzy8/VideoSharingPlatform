@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { VideoService } from "../video.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-save-video-details',
@@ -20,7 +21,9 @@ export class SaveVideoDetailsComponent {
 	selectedFileName = "";
 	videoId = "";
 	
-	constructor(private activatedRoute: ActivatedRoute, private videoService: VideoService) {
+	constructor(private activatedRoute: ActivatedRoute, 
+				private videoService: VideoService, 
+				private matSnackBar: MatSnackBar) {
 		
 		this.videoId = this.activatedRoute.snapshot.params['videoId'];	
 			
@@ -46,7 +49,9 @@ export class SaveVideoDetailsComponent {
 		this.videoService.uploadThumbnail(this.selectedFile, this.videoId)
 			.subscribe(data => {
 				console.log(data);
+				
 				//show notif for successful upload
+				this.matSnackBar.open("Thumbnail Uploaded Successfully", "OK");
 			})		
 	}
 
