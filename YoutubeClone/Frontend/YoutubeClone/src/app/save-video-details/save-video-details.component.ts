@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { VideoService } from "../upload-video/video.service";
+import { VideoService } from "../video.service";
 
 @Component({
   selector: 'app-save-video-details',
@@ -22,8 +22,8 @@ export class SaveVideoDetailsComponent {
 	
 	constructor(private activatedRoute: ActivatedRoute, private videoService: VideoService) {
 		
-		this.videoId = this.activatedRoute.snapshot.params.videoId;
-		
+		this.videoId = this.activatedRoute.snapshot.params['videoId'];	
+			
 		this.saveVideoDetailsForm = new FormGroup({
 			title: this.title,
 			description: this.description,
