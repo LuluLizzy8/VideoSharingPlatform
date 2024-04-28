@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UploadVideoResponse } from './upload-video/UploadVideoResponse';
-import { VideoDto } from "./dto/VideoDto";
+import { VideoDto } from "./video-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +38,3 @@ export class VideoService {
 	return this.httpClient.get<VideoDto>("http://localhost:8080/api/videos/" + videoId); //return videoDto
 	
   } 
-  
-
