@@ -37,5 +37,7 @@ export class VideoService {
 	//http call to our backend
 	return this.httpClient.get<VideoDto>("http://localhost:8080/api/videos/" + videoId); //return videoDto
   }
-	
+
 } 
+
+
