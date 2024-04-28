@@ -17,7 +17,11 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
 import { MatOptionModule } from "@angular/material/core";
 import { MatInputModule } from "@angular/material/input";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { VgCoreModule } from "@videogular/ngx-videogular/core";
+import { VgControlsModule } from "@videogular/ngx-videogular/controls";
+import { VgOverlayPlayModule } from "@videogular/ngx-videogular/overlay-play";
+import { VgBufferingModule } from "@videogular/ngx-videogular/buffering";
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSelectModule,
     MatOptionModule, 
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   
   providers: [

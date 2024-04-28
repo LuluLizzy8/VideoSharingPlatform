@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { VideoService } from "../upload-video/video.service";
 
 @Component({
   selector: 'app-save-video-details',
@@ -14,8 +16,14 @@ export class SaveVideoDetailsComponent {
 	title: FormControl = new FormControl("");
 	description: FormControl = new FormControl("");
 	//videostatus 
+	selectedFile!: File;
+	selectedFileName = "";
+	videoId = "";
 	
-	constructor() {
+	constructor(private activatedRoute: ActivatedRoute, private videoService: VideoService) {
+		
+		this.videoId = this.activatedRoute.snapshot.params.videoId;
+		
 		this.saveVideoDetailsForm = new FormGroup({
 			title: this.title,
 			description: this.description,
@@ -24,8 +32,21 @@ export class SaveVideoDetailsComponent {
 	
 	}
 	
-	ngOnInit(): void {
 	
+	ngOnInit(): void {
+	}
+	
+	onFileSelected(event: any) {
+		this.selectedFile = event.target.files[0]; 
+		this.selectedFileName = this.selectedFile.name; 
+	}
+	
+	onUpload() {
+		this.videoService.uploadThumbnail(this.selectedFile, this.videoId)
+			.subscribe(data => {
+				console.log(data);
+				//show notif for successful upload
+			})		
 	}
 
 }

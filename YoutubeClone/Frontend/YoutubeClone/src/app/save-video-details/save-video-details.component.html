@@ -12,6 +12,7 @@
 					<mat-label>Description</mat-label>
 					<input matInput	placeholder="your description here" required>
 				</mat-form-field>
+				
 				<!-- for video status, maybe implement later
 				<mat-form-field>
 					<mat-label> Video Status </mat-label>
@@ -20,12 +21,38 @@
 				    	<mat-option value="two"> Second option </mat-option>
 					</mat-select>
 				</mat-form-field> -->
-				<p>
+
+				
+				
+				<div>
+			    	<label for="inputGroupFile01">Upload Thumbnail:
+			        	<div class="custom-file">
+			            	<input type="file" class="custom-file-input" id="inputGroupFile01"
+			                	aria-describedby="inputGroupFileAddon01" (change)="onFileSelected($event)">
+			          	</div>
+			          	<br/>
+			          	<div>
+			            	<p>Selected File: {{selectedFileName}} </p>
+			          	</div>
+			          	<hr>
+			          	<div>
+			          		<button mat-raised-button color="primary" type="submit" (click)="onUpload()">Upload</button>
+			        	</div>
+			        	<br>
+			     	</label>
+			     </div>
+				
+				<div>
 					<button type="submit" mat-raised-button color="primary"> Save </button>
-				</p>
+				</div>
+				
+				
 			</div>
 		</form>
 	</div>
+	
+
+      
 	
 	<div class="button-bar">
 		Video Player
