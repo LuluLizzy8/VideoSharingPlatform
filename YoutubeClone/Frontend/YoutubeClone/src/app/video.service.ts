@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UploadVideoResponse } from './upload-video/UploadVideoResponse';
+import { VideoDto } from "./dto/VideoDto";
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +32,11 @@ export class VideoService {
 		responseType: "text"
 	});
   }
-}
+  
+  getVideo(videoId: string): Observable<VideoDto> {
+	//http call to our backend
+	return this.httpClient.get<VideoDto>("http://localhost:8080/api/videos/" + videoId); //return videoDto
+	
+  } 
+  
+

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-video-player',
@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class VideoPlayerComponent {
 	
+	@Input()
+	videoUrl!: string | ""; //can then bind this to source attribute
 	constructor() {	}
 
 	ngOnIt(): void {
