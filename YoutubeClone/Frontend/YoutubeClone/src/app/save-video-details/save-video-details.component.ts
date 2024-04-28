@@ -20,6 +20,7 @@ export class SaveVideoDetailsComponent {
 	selectedFile!: File;
 	selectedFileName = "";
 	videoId = "";
+	fileSelected = false;
 	
 	constructor(private activatedRoute: ActivatedRoute, 
 				private videoService: VideoService, 
@@ -43,6 +44,7 @@ export class SaveVideoDetailsComponent {
 	onFileSelected(event: any) {
 		this.selectedFile = event.target.files[0]; 
 		this.selectedFileName = this.selectedFile.name; 
+		this.fileSelected = true;
 	}
 	
 	onUpload() {

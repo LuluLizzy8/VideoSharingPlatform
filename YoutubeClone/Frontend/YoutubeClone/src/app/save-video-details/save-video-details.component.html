@@ -31,13 +31,14 @@
 			                	aria-describedby="inputGroupFileAddon01" (change)="onFileSelected($event)">
 			          	</div>
 			          	<br/>
-			          	<div>
-			            	<p>Selected File: {{selectedFileName}} </p>
+			          	<div *ngIf="fileSelected">
+			          		<div>
+			            		<p>Selected File: {{selectedFileName}} </p>
+			          		</div>
+			          		<div>
+			          			<button mat-raised-button color="primary" type="submit" (click)="onUpload()">Upload</button>
+			        		</div>
 			          	</div>
-			          	<hr>
-			          	<div>
-			          		<button mat-raised-button color="primary" type="submit" (click)="onUpload()">Upload</button>
-			        	</div>
 			        	<br>
 			     	</label>
 			     </div>
