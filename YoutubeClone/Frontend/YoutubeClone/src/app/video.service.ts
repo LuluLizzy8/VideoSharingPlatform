@@ -36,5 +36,6 @@ export class VideoService {
   getVideo(videoId: string): Observable<VideoDto> {
 	//http call to our backend
 	return this.httpClient.get<VideoDto>("http://localhost:8080/api/videos/" + videoId); //return videoDto
+  }
 	
-  } 
+} 
