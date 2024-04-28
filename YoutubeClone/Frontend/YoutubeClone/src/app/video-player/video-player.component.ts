@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -12,7 +12,7 @@ export class VideoPlayerComponent {
 	videoUrl!: string | ""; //can then bind this to source attribute
 	constructor() {	}
 
-	ngOnIt(): void {
+	ngOnInIt(): void {
 		
 	}
 }
