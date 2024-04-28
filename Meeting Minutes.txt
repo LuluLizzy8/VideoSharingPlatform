@@ -85,16 +85,29 @@ Lunjia: Writing VideoService class of backend
 Viana: Writing User class of backend
 Smile: Writing RegisteredUser class of backend
 
+Iteration 4:
+Leftover from Last Iteration:
+  Save Video Details
+  Upload Thumbnails
+  Get Video Details 
+
+Prioritized List of Features to be implemented:
+  Save Video Details
+  Upload Thumbnails
+  Get Video Details
+
 April 13
 Meet with TA Wang for help.
 Resolve the problem of setting up our environment. The problem for MacOS was we didn’t grant Eclipse accessibility to our local files and dependency problems where we needed to build the frontend first and then the backend because the frontend is connected to the backend. If we run backend first, eclipse can’t recoginze frontend. For Viana’s laptop, there was a language server issue which was resolved by force downloading the files. 
 Elizabeth: Uploaded backend Video and Comment class to Git; wrote VideoController class, AWSService class, FileService interface; created AWS account, bucket, and passkey; added AWS S3 dependencies to backend pom.xml and updated application.properties file to include AWS S3; debugged, figuring out correct dependencies and formatting until YoutubeCloneApplication.java ran without errors
 Lunjia: Writing VideoService class of backend
-Viana: Writing User class of backend
-Smile: Writing RegisteredUser class of backend
+Viana: Writing user class of backend
+Smile: Writing user class of backend
 
-April 24
-Elizabeth: Angular upload video to AW3
-Lunjia: Angular upload video to AW3
-Viana: Create header component
-Smile: Create header component
+April 25
+Elizabeth: Angular upload video to AW3, updated lombok related constructors to fix bug, debugged and recreated the frontend angular application to include the needed and correct files, debugged to resolve the 403 error related to unauthorized access to file upload, debugged and fixed css and ts errors related to header component and save-video-details component, added angular theme to angular.json
+Lunjia: worked on tags and upload thumbnail
+Viana: Created header component, save-video details component, video thumbnail function, rebased github and deleted faulty push from repository
+Smile: Created header component, save-video details component, video thumbnail function
+
+May 2
