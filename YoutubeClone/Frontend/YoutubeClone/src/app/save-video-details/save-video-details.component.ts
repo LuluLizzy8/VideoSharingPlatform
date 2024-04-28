@@ -34,6 +34,7 @@ export class SaveVideoDetailsComponent {
 	
 	
 	ngOnInit(): void {
+	
 	}
 	
 	onFileSelected(event: any) {
