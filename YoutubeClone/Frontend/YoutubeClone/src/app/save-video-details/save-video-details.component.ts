@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { VideoService } from "../video.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {VideoDto} from "../video-dto";
 
 @Component({
   selector: 'app-save-video-details',
@@ -16,12 +17,12 @@ export class SaveVideoDetailsComponent {
 	
 	title: FormControl = new FormControl("");
 	description: FormControl = new FormControl("");
-	//videostatus 
 	selectedFile!: File;
 	selectedFileName = "";
 	videoId = "";
 	fileSelected = false;
 	videoUrl!: string;
+	thumbnailUrl!: string;
 	
 	constructor(private activatedRoute: ActivatedRoute, 
 				private videoService: VideoService, 
@@ -30,14 +31,13 @@ export class SaveVideoDetailsComponent {
 		this.videoId = this.activatedRoute.snapshot.params['videoId'];	
 		
 		this.videoService.getVideo(this.videoId).subscribe(data => {
-			//fetch url from response and 
 			this.videoUrl = data.videoUrl;
+			this.thumbnailUrl = data.thumbnailUrl;
 		})
 			
 		this.saveVideoDetailsForm = new FormGroup({
 			title: this.title,
 			description: this.description,
-			//videostatus
 		})
 	
 	}
@@ -61,6 +61,21 @@ export class SaveVideoDetailsComponent {
 				//show notif for successful upload
 				this.matSnackBar.open("Thumbnail Uploaded Successfully", "OK");
 			})		
+	}
+	
+	saveVideo() {
+		const videoMetadata: VideoDto = {
+			"id": this.videoId,
+			"userId": "", //add user id
+			"title": this.saveVideoDetailsForm.get('title')?.value,
+			"description": this.saveVideoDetailsForm.get('description')?.value,
+			"videoUrl": this.videoUrl,
+			"thumbnailUrl": this.thumbnailUrl,
+			"likes": 0,
+		}
+		this.videoService.saveVideo(videoMetadata).subscribe(data =>{
+			this.matSnackBar.open("Video Metadata Updated successfully", "OK");
+		})
 	}
 
 }
