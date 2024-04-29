@@ -17,16 +17,25 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
 import { MatOptionModule } from "@angular/material/core";
 import { MatInputModule } from "@angular/material/input";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { VgCoreModule } from "@videogular/ngx-videogular/core";
+import { VgControlsModule } from "@videogular/ngx-videogular/controls";
+import { VgOverlayPlayModule } from "@videogular/ngx-videogular/overlay-play";
+import { VgBufferingModule } from "@videogular/ngx-videogular/buffering";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { VideoPlayerComponent } from './video-player/video-player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadVideoComponent,
     HeaderComponent,
-    SaveVideoDetailsComponent
+    SaveVideoDetailsComponent,
+    VideoPlayerComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
@@ -39,7 +48,12 @@ import { MatInputModule } from "@angular/material/input";
     MatSelectModule,
     MatOptionModule, 
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+    MatSnackBarModule
   ],
   
   providers: [

@@ -60,4 +60,18 @@ public class VideoService {
 			.orElseThrow(()->new IllegalArgumentException("video id not found" + videoId));
 	}
 
+	public VideoDto getVideoDetails(String videoId) {
+		Video savedVideo = getVideoById(videoId);
+		//have to map this video to videodto
+		VideoDto videoDto = new VideoDto();
+		
+		videoDto.setVideoUrl(savedVideo.getVideoUrl());
+		videoDto.setThumbnailUrl(savedVideo.getThumbnailUrl());
+		videoDto.setId(savedVideo.getId());
+		videoDto.setTitle(savedVideo.getTitle());
+		videoDto.setDescription(savedVideo.getDescription());
+		
+		return videoDto;
+	}
+
 }
