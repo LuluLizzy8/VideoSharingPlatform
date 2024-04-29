@@ -23,7 +23,7 @@ public class VideoDto {
 	private String videoUrl;
 	//private Integer viewCount;
 	private String thumbnailUrl;
-	private List<Comment> commentList;
+	//private List<Comment> commentList;
 	
 
 }

@@ -6,11 +6,11 @@
 			<div class="form-input-text">
 				<mat-form-field appearance="fill">
 					<mat-label>Title</mat-label>
-					<input matInput placeholder="your title here" required>
+					<input matInput placeholder="your title here" [formControl]="title" required>
 				</mat-form-field>
 				<mat-form-field appearance="fill">
 					<mat-label>Description</mat-label>
-					<input matInput	placeholder="your description here" required>
+					<input matInput	placeholder="your description here" [formControl]="description" required>
 				</mat-form-field>
 				
 				<!-- for video status, maybe implement later
@@ -44,7 +44,7 @@
 			     </div>
 				
 				<div>
-					<button type="submit" mat-raised-button color="primary"> Save </button>
+					<button type="submit" mat-raised-button color="primary" (click)="saveVideo()"> Save </button>
 				</div>
 				
 				
