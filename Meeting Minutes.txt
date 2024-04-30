@@ -106,7 +106,7 @@ Smile: Writing user class of backend
 
 April 25
 Elizabeth: Angular upload video to AW3, updated lombok related constructors to fix bug, debugged and recreated the frontend angular application to include the needed and correct files, debugged to resolve the 403 error related to unauthorized access to file upload, debugged and fixed css and ts errors related to header component and save-video-details component, added angular theme to angular.json
-Lunjia: worked on tags and upload thumbnail
+Lunjia: Worked on tags and upload thumbnail, save video to database.
 Viana: Created header component, save-video details component, video thumbnail function, rebased github and deleted faulty push from repository
 Smile: Created header component, save-video details component, video thumbnail function
 
