@@ -32,6 +32,7 @@ import { SubscriptionsComponent } from './subscriptions/subscriptions.component'
 import { LikedVideosComponent } from './liked-videos/liked-videos.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatListModule } from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { MatSidenavModule } from "@angular/material/sidenav";
     VgBufferingModule,
     MatSnackBarModule,
     AuthConfigModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule
   ],
   
   providers: [
