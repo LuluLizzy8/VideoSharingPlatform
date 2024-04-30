@@ -9,13 +9,15 @@ import { HistoryComponent } from "./history/history.component";
 import { LikedVideosComponent } from "./liked-videos/liked-videos.component";
 
 const routes: Routes = [
-	{ path: '', component: HomeComponent, },
+	{ path: '', component: HomeComponent,
+	children:[
+		{ path: 'subscriptions', component: SubscriptionsComponent, },
+		{ path: 'history', component: HistoryComponent, },
+		{ path: 'liked-videos', component: LikedVideosComponent, },
+	]},
 	{ path: 'upload-video', component: UploadVideoComponent, },
 	{ path: 'save-video-details/:videoId', component: SaveVideoDetailsComponent, },
 	{ path: 'video-detail/:videoId', component: VideoDetailComponent, },
-	{ path: 'subscriptions', component: SubscriptionsComponent, },
-	{ path: 'history', component: HistoryComponent, },
-	{ path: 'liked-videos', component: LikedVideosComponent, },
 ];
 
 @NgModule({

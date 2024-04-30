@@ -33,6 +33,7 @@ import { LikedVideosComponent } from './liked-videos/liked-videos.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
+import { FeaturedComponent } from './featured/featured.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MatListModule } from "@angular/material/list";
     HistoryComponent,
     SubscriptionsComponent,
     LikedVideosComponent,
-    SidebarComponent
+    SidebarComponent,
+    FeaturedComponent
   ],
   imports: [
     BrowserModule,
