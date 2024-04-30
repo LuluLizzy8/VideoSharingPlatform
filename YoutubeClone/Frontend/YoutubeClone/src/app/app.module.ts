@@ -25,6 +25,7 @@ import { VgBufferingModule } from "@videogular/ngx-videogular/buffering";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { VideoDetailComponent } from './video-detail/video-detail.component';
+import { AuthConfigModule } from './auth/auth-config.module';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { VideoDetailComponent } from './video-detail/video-detail.component';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AuthConfigModule
   ],
   
   providers: [
