@@ -10,6 +10,6 @@ public class UserController {
 
 	@GetMapping("/register")
 	public String register() {
-		return "User Registeration successful";
+		return "User Registeration Successful";
 	}
 }
