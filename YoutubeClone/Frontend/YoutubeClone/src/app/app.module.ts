@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UploadVideoComponent } from './upload-video/upload-video.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, withFetch } from '@angular/common/http';
+import { HttpClientModule, withFetch, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { MatButtonModule } from "@angular/material/button";
 import { HeaderComponent } from './header/header.component';
@@ -26,6 +26,8 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { VideoDetailComponent } from './video-detail/video-detail.component';
 import { AuthConfigModule } from './auth/auth-config.module';
+import { AuthInterceptor, AuthModule } from 'angular-auth-oidc-client';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { AuthConfigModule } from './auth/auth-config.module';
   ],
   
   providers: [
-    provideClientHydration()
+    //provideClientHydration()
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
   ],
   
   bootstrap: [AppComponent]
