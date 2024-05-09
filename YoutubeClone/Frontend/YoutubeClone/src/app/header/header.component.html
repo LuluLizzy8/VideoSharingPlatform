@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
    <mat-toolbar-row>
-     <span>Youtube Clone</span>
+     <span routerLink="">Youtube Clone</span>
      <span class="spacer"></span>
-     <button mat-icon-button class="example-icon" aria-label="video recorder with a plus on it">
+     <button mat-icon-button class="example-icon" aria-label="video recorder with a plus on it" routerLink="/upload-video">
        <mat-icon>video_call</mat-icon>
      </button>
      <button *ngIf="isAuthenticated; else noAuth" mat-icon-button class="user-icon" aria-label="user profile">
