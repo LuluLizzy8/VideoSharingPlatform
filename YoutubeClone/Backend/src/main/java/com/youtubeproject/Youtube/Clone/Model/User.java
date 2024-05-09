@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set; //use set or list?
 
 
@@ -18,14 +19,17 @@ import java.util.Set; //use set or list?
 @AllArgsConstructor
 public class User {
 	@Id
-	private String id;
-	private String userName; 
-	private String email;
-	private String password;
-	private List<String> subscribedTo;
-	private List<String> subscribers; 
-	private Set<String> likedVideos = new HashSet<>();
-    private Set<String> comments = new HashSet<>();
+    private String id;
+    private String firstName;
+    private String lastName;
+    private String fullName;
+    private String picture;
+    private String email;
+    private String sub;
+    private Set<String> subscribedTo = new HashSet<>();
+    private Set<String> subscribers = new HashSet<>();
+    private Set<String> videoHistory = new LinkedHashSet<>();
+    private Set<String> likedVideos = new HashSet<>();
 	
 	public void addToLikedVideos(String videoId) {
         likedVideos.add(videoId);
@@ -33,14 +37,6 @@ public class User {
 
     public void unLikeVideo(String videoId) {
         likedVideos.remove(videoId);
-    }
-
-    public void commentVideo(String videoId) {
-        comments.add(videoId);
-    }
-    
-    public void deleteComment(String videoId) {
-        comments.remove(videoId);
     }
 
     public void addToSubscribedUsers(String userId) {
