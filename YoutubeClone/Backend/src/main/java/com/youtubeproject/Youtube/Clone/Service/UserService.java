@@ -42,4 +42,24 @@ public class UserService {
 		currentUser.addToVideoHistory(videoId);
 		userRepository.save(currentUser);
 	}
+
+	public void subscribeToUser(String userId) {
+		User currentUser = getCurrentUser();
+		currentUser.addToSubscribedUsers(userId);
+		User targetUser = userRepository.findById(userId)
+				.orElseThrow(() -> new IllegalArgumentException("Cannot find user with userId - " + userId));
+        targetUser.addToSubscribers(targetUser.getId());
+        userRepository.save(currentUser);
+        userRepository.save(targetUser);
+	}
+	
+	public void unsubscribeToUser(String userId) {
+		User currentUser = getCurrentUser();
+		currentUser.removeFromSubscribedUsers(userId);
+		User targetUser = userRepository.findById(userId)
+				.orElseThrow(() -> new IllegalArgumentException("Cannot find user with userId - " + userId));
+        targetUser.removeFromSubscribers(targetUser.getId());
+        userRepository.save(currentUser);
+        userRepository.save(targetUser);
+	}
 }

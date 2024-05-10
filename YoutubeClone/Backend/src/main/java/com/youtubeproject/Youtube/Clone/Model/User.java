@@ -40,9 +40,17 @@ public class User {
     public void addToSubscribedUsers(String userId) {
         subscribedTo.add(userId);
     }
+    
+    public void removeFromSubscribedUsers(String userId) {
+    	subscribedTo.remove(userId);
+    }
 
     public void addToSubscribers(String userId) {
         subscribers.add(userId);
+    }
+    
+    public void removeFromSubscribers(String userId) {
+    	subscribers.remove(userId);
     }
 
 	public void addToVideoHistory(String videoId) {
