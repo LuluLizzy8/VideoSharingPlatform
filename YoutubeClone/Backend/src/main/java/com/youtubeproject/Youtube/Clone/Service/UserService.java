@@ -5,6 +5,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import com.youtubeproject.Youtube.Clone.Model.User;
+import com.youtubeproject.Youtube.Clone.Model.Video;
 import com.youtubeproject.Youtube.Clone.Repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -34,5 +35,11 @@ public class UserService {
 	
 	public boolean ifLikedVideo(String videoId) {
 		return getCurrentUser().getLikedVideos().stream().anyMatch(id -> id.equals(videoId));
+	}
+	
+	public void addVideoToHistory(String videoId) {
+		User currentUser = getCurrentUser();
+		currentUser.addToVideoHistory(videoId);
+		userRepository.save(currentUser);
 	}
 }

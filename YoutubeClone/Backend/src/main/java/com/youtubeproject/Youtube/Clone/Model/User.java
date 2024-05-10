@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set; //use set or list?
@@ -46,5 +44,10 @@ public class User {
     public void addToSubscribers(String userId) {
         subscribers.add(userId);
     }
+
+	public void addToVideoHistory(String videoId) {
+		videoHistory.add(videoId);
+		
+	}
 
 }

@@ -9,8 +9,6 @@ import com.youtubeproject.Youtube.Clone.dto.UploadVideoResponse;
 import com.youtubeproject.Youtube.Clone.dto.VideoDto;
 
 import lombok.RequiredArgsConstructor;
-import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.S3ServiceClientConfiguration;
 
 @Service
 @RequiredArgsConstructor
@@ -64,16 +62,18 @@ public class VideoService {
 	public VideoDto getVideoDetails(String videoId) {
 		Video savedVideo = getVideoById(videoId);
 		
-		VideoDto videoDto = new VideoDto();
-		videoDto.setVideoUrl(savedVideo.getVideoUrl());
-		videoDto.setThumbnailUrl(savedVideo.getThumbnailUrl());
-		videoDto.setId(savedVideo.getId());
-		videoDto.setTitle(savedVideo.getTitle());
-		videoDto.setDescription(savedVideo.getDescription());
+		increaseViewCount(videoId);
+		userService.addVideoToHistory(videoId);
 		
-		return videoDto;
+		return mapToVideoDto(savedVideo);
 	}
 	
+	private void increaseViewCount(String videoId) {
+		Video videoById = getVideoById(videoId);
+		videoById.incrementViewCount();
+		videoRepository.save(videoById);
+	}
+
 	public VideoDto likeVideo(String videoId) {
 		Video videoById = getVideoById(videoId);
 		
@@ -87,13 +87,18 @@ public class VideoService {
 		
 		videoRepository.save(videoById);
 		
+		return mapToVideoDto(videoById);
+	}
+	
+	private VideoDto mapToVideoDto(Video video) {
 		VideoDto videoDto = new VideoDto();
-		videoDto.setVideoUrl(videoById.getVideoUrl());
-		videoDto.setThumbnailUrl(videoById.getThumbnailUrl());
-		videoDto.setId(videoById.getId());
-		videoDto.setTitle(videoById.getTitle());
-		videoDto.setDescription(videoById.getDescription());
-		videoDto.setLikes(videoById.getLikes().get());
+		videoDto.setVideoUrl(video.getVideoUrl());
+		videoDto.setThumbnailUrl(video.getThumbnailUrl());
+		videoDto.setId(video.getId());
+		videoDto.setTitle(video.getTitle());
+		videoDto.setDescription(video.getDescription());
+		videoDto.setLikes(video.getLikes().get());
+		videoDto.setViewCount(video.getViewCount().get());
 		
 		return videoDto;
 	}

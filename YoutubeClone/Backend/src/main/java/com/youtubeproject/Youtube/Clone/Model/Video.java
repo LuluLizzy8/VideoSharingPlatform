@@ -21,19 +21,23 @@ public class Video {
 	private String id;
 	private String title;
 	private String description;
-	private String userId;
+	// private String userId;
 	private AtomicInteger likes = new AtomicInteger(0);
 	private String videoUrl;
-	//private Integer viewCount;
+	private AtomicInteger viewCount  = new AtomicInteger(0);
 	private String thumbnailUrl;
-	private List<Comment> commentList;
-
+	// private List<Comment> commentList;
+	
 	public void incrementLikes() {
 		likes.incrementAndGet();
 	}
 	
 	public void decrementLikes() {
 		likes.decrementAndGet();
+	}
+
+	public void incrementViewCount() {
+		viewCount.incrementAndGet();
 	}
 	
 }
