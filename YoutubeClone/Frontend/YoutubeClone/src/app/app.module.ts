@@ -82,7 +82,6 @@ import { MatCardModule } from "@angular/material/card";
   ],
   
   providers: [
-    //provideClientHydration()
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
   ],
   

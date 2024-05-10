@@ -23,6 +23,7 @@ export class SaveVideoDetailsComponent {
 	fileSelected = false;
 	videoUrl!: string;
 	thumbnailUrl!: string;
+	videoAvaliable: boolean = false;
 	
 	constructor(private activatedRoute: ActivatedRoute, 
 				private videoService: VideoService, 
@@ -33,6 +34,7 @@ export class SaveVideoDetailsComponent {
 		this.videoService.getVideo(this.videoId).subscribe(data => {
 			this.videoUrl = data.videoUrl;
 			this.thumbnailUrl = data.thumbnailUrl;
+			this.videoAvaliable = true;
 		})
 			
 		this.saveVideoDetailsForm = new FormGroup({

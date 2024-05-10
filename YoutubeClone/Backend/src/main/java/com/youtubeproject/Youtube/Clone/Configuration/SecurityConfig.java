@@ -53,10 +53,9 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(a -> a
                 .requestMatchers("/api/videos/**").authenticated()
-                .anyRequest().permitAll()  // Check all other connections
+                .anyRequest().permitAll()
             )
-            //.httpBasic(Basic -> Basic.disable())  // Apply basic authentication
-            .csrf(csrf -> csrf.disable()) // Disable CSRF protection
+            .csrf(csrf -> csrf.disable())
             .cors(Customizer.withDefaults())
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.decoder(jwtDecoder())));
         

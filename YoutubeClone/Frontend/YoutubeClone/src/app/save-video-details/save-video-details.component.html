@@ -1,5 +1,5 @@
 <div class="save-video-detail">
-	<div class="button-bar"> Hi </div>
+	<div class="button-bar"> </div>
 	<div class="button-bar">
 		<div class="mat-title"> Add Video Metadata </div>
 		<form>
@@ -53,8 +53,8 @@
 	</div>
 	
 	<div fxflex="30%">
-		<app-video-player [videoUrl]="videoUrl"></app-video-player>
+		<app-video-player *ngIf="videoAvaliable" [videoUrl]="videoUrl"></app-video-player>
 	</div>
 	
-	<div class="button-bar"> Hi </div>
+	<div class="button-bar"> </div>
 </div>
