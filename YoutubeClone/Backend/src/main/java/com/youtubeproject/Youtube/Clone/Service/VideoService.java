@@ -1,10 +1,14 @@
 package com.youtubeproject.Youtube.Clone.Service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.youtubeproject.Youtube.Clone.Model.Comment;
 import com.youtubeproject.Youtube.Clone.Model.Video;
 import com.youtubeproject.Youtube.Clone.Repository.VideoRepository;
+import com.youtubeproject.Youtube.Clone.dto.CommentDto;
 import com.youtubeproject.Youtube.Clone.dto.UploadVideoResponse;
 import com.youtubeproject.Youtube.Clone.dto.VideoDto;
 
@@ -103,4 +107,31 @@ public class VideoService {
 		return videoDto;
 	}
 
+	public void addComment(String videoId, CommentDto commentDto) {
+		Video video = getVideoById(videoId);
+		Comment comment = new Comment();
+		comment.setContent(commentDto.getContent());
+		comment.setUserId(commentDto.getUserId());
+		video.addComment(comment);
+		
+		videoRepository.save(video);
+	}
+
+	public List<CommentDto> getAllComments(String videoId) {
+		Video video = getVideoById(videoId);
+		List<Comment> commentList = video.getCommentList();
+		
+		return commentList.stream().map(this::mapToCommentDto).toList();
+	}
+	
+	private CommentDto mapToCommentDto(Comment comment) {
+		CommentDto commentDto = new CommentDto();
+		commentDto.setContent(comment.getContent());
+		commentDto.setUserId(comment.getUserId());
+		return null;
+	}
+
+	public List<VideoDto> getAllVideos() {
+		return videoRepository.findAll().stream().map(this::mapToVideoDto).toList();
+	}
 }

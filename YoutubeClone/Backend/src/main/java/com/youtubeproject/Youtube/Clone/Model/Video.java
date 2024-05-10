@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -26,7 +27,7 @@ public class Video {
 	private String videoUrl;
 	private AtomicInteger viewCount  = new AtomicInteger(0);
 	private String thumbnailUrl;
-	// private List<Comment> commentList;
+	private List<Comment> commentList = new ArrayList<>();
 	
 	public void incrementLikes() {
 		likes.incrementAndGet();
@@ -38,6 +39,10 @@ public class Video {
 
 	public void incrementViewCount() {
 		viewCount.incrementAndGet();
+	}
+
+	public void addComment(Comment comment) {
+		commentList.add(comment);
 	}
 	
 }

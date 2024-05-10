@@ -14,7 +14,7 @@ public class Comment {
 	
 	@Id
 	private String id;
-	private String content;
 	private String userId;
+	private String content;
 	
 }
