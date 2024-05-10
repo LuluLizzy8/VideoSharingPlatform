@@ -24,6 +24,7 @@ public class UserRegistrationService {
 	
 	private final UserRepository userRepository;
 	
+	//tokenValue is the Bearer Authentication Token
 	public void registerUser(String tokenValue) {
 		//make call to userinfo endpoint
 		

@@ -18,6 +18,7 @@ public class VideoService {
 	
 	private final AWSService awsService;
 	private final VideoRepository videoRepository;
+	private final UserService userService;
 	
 	public UploadVideoResponse uploadVideo(MultipartFile multipartFile) {
 		String videoURL = awsService.uploadFile(multipartFile);
@@ -62,14 +63,37 @@ public class VideoService {
 
 	public VideoDto getVideoDetails(String videoId) {
 		Video savedVideo = getVideoById(videoId);
-		//have to map this video to videodto
-		VideoDto videoDto = new VideoDto();
 		
+		VideoDto videoDto = new VideoDto();
 		videoDto.setVideoUrl(savedVideo.getVideoUrl());
 		videoDto.setThumbnailUrl(savedVideo.getThumbnailUrl());
 		videoDto.setId(savedVideo.getId());
 		videoDto.setTitle(savedVideo.getTitle());
 		videoDto.setDescription(savedVideo.getDescription());
+		
+		return videoDto;
+	}
+	
+	public VideoDto likeVideo(String videoId) {
+		Video videoById = getVideoById(videoId);
+		
+		if(userService.ifLikedVideo(videoId)) {
+			videoById.decrementLikes();
+			userService.removeFromLikedVideos(videoId);
+		} else {
+			videoById.incrementLikes();
+			userService.addToLikedVideos(videoId);
+		}
+		
+		videoRepository.save(videoById);
+		
+		VideoDto videoDto = new VideoDto();
+		videoDto.setVideoUrl(videoById.getVideoUrl());
+		videoDto.setThumbnailUrl(videoById.getThumbnailUrl());
+		videoDto.setId(videoById.getId());
+		videoDto.setTitle(videoById.getTitle());
+		videoDto.setDescription(videoById.getDescription());
+		videoDto.setLikes(videoById.getLikes().get());
 		
 		return videoDto;
 	}

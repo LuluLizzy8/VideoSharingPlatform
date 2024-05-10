@@ -62,7 +62,7 @@ export class SaveVideoDetailsComponent {
 				
 				//show notif for successful upload
 				this.matSnackBar.open("Thumbnail Uploaded Successfully", "OK");
-			})		
+			})	
 	}
 	
 	saveVideo() {
