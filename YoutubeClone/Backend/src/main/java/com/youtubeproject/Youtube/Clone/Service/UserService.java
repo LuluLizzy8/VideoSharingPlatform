@@ -1,13 +1,18 @@
 package com.youtubeproject.Youtube.Clone.Service;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import com.youtubeproject.Youtube.Clone.Model.User;
+import com.youtubeproject.Youtube.Clone.Model.Video;
 import com.youtubeproject.Youtube.Clone.Repository.UserRepository;
+import com.youtubeproject.Youtube.Clone.Repository.VideoRepository;
+import com.youtubeproject.Youtube.Clone.dto.VideoDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
 	
 	private final UserRepository userRepository;
+	private final VideoRepository videoRepository;
 	
 	public User getCurrentUser() {
 		String sub = ((Jwt)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getClaim("sub");
@@ -61,11 +67,27 @@ public class UserService {
         userRepository.save(currentUser);
         userRepository.save(targetUser);
 	}
-
-	public Set<String> userHistory(String userId) {
-		User user = getUserById(userId);
-		return user.getVideoHistory();
+	
+	private VideoDto mapToVideoDto(Video video) {
+		VideoDto videoDto = new VideoDto();
+		videoDto.setVideoUrl(video.getVideoUrl());
+		videoDto.setThumbnailUrl(video.getThumbnailUrl());
+		videoDto.setId(video.getId());
+		videoDto.setTitle(video.getTitle());
+		videoDto.setDescription(video.getDescription());
+		videoDto.setLikes(video.getLikes().get());
+		videoDto.setViewCount(video.getViewCount().get());
+		videoDto.setUserId(video.getUserId());
+		
+		return videoDto;
 	}
+
+	public List<VideoDto> userHistory() {
+	    User user = getCurrentUser();
+	    Set<String> historyIds = user.getVideoHistory();
+	    return videoRepository.findAllById(historyIds).stream().map(this::mapToVideoDto).toList();
+	}
+
 
 	private User getUserById(String userId) {
 		return userRepository.findById(userId)

@@ -30,7 +30,6 @@ import { AuthInterceptor, AuthModule } from 'angular-auth-oidc-client';
 import { HomeComponent } from './home/home.component';
 import { HistoryComponent } from './history/history.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
-import { LikedVideosComponent } from './liked-videos/liked-videos.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
@@ -51,7 +50,6 @@ import { MatMenuModule } from "@angular/material/menu";
     HomeComponent,
     HistoryComponent,
     SubscriptionsComponent,
-    LikedVideosComponent,
     SidebarComponent,
     FeaturedComponent,
     VideoCardComponent,

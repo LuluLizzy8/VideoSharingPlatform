@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.youtubeproject.Youtube.Clone.Service.UserRegistrationService;
 import com.youtubeproject.Youtube.Clone.Service.UserService;
+import com.youtubeproject.Youtube.Clone.dto.VideoDto;
 
 import lombok.RequiredArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -49,9 +50,9 @@ public class UserController {
 		return true;
 	}
 	
-	@GetMapping("/{userId}/history")
+	@GetMapping("/history")
 	@ResponseStatus(HttpStatus.OK)
-	public Set<String> userHistory(@PathVariable String userId){
-		return userService.userHistory(userId);
+	public List<VideoDto> userHistory(){
+		return userService.userHistory();
 	}
 }
