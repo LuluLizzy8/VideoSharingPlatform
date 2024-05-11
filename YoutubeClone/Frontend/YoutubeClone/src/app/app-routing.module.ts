@@ -11,15 +11,17 @@ import { FeaturedComponent } from "./featured/featured.component";
 import { CallbackComponent } from "./callback/callback.component";
 
 const routes: Routes = [
-	{ path: '', component: HomeComponent, },
+	{ path: '', component: HomeComponent,
+	children:[
 		{ path: 'subscriptions', component: SubscriptionsComponent, },
 		{ path: 'history', component: HistoryComponent, },
 		{ path: 'liked-videos', component: LikedVideosComponent, },
 		{ path: 'featured', component: FeaturedComponent, },
-		{ path: 'callback', component: CallbackComponent, },
+	]},
 	{ path: 'upload-video', component: UploadVideoComponent, },
 	{ path: 'save-video-details/:videoId', component: SaveVideoDetailsComponent, },
 	{ path: 'video-detail/:videoId', component: VideoDetailComponent, },
+	{ path: 'callback', component: CallbackComponent, },
 	
 ];
 

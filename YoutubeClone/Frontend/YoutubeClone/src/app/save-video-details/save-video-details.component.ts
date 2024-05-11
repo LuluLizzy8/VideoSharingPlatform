@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { VideoService } from "../video.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {VideoDto} from "../video-dto";
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-save-video-details',
@@ -14,6 +15,7 @@ import {VideoDto} from "../video-dto";
 export class SaveVideoDetailsComponent {
 	
 	saveVideoDetailsForm: FormGroup;
+
 	
 	title: FormControl = new FormControl("");
 	description: FormControl = new FormControl("");
@@ -24,10 +26,12 @@ export class SaveVideoDetailsComponent {
 	videoUrl!: string;
 	thumbnailUrl!: string;
 	videoAvaliable: boolean = false;
+	userName = "";
 	
 	constructor(private activatedRoute: ActivatedRoute, 
 				private videoService: VideoService, 
-				private matSnackBar: MatSnackBar) {
+				private matSnackBar: MatSnackBar,
+				private userService: UserService) {
 		
 		this.videoId = this.activatedRoute.snapshot.params['videoId'];	
 		
@@ -68,7 +72,7 @@ export class SaveVideoDetailsComponent {
 	saveVideo() {
 		const videoMetadata: VideoDto = {
 			"id": this.videoId,
-			"userId": "", //add user id
+			"userId": "",
 			"title": this.saveVideoDetailsForm.get('title')?.value,
 			"description": this.saveVideoDetailsForm.get('description')?.value,
 			"videoUrl": this.videoUrl,

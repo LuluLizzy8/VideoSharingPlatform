@@ -2,9 +2,8 @@
 	<img mat-card-image [src]="video.thumbnailUrl" alt="Thumbnail">
 
 	<mat-card-header>
-    	<div mat-card-avatar class="example-header-image"></div>
     	<mat-card-title>{{video.title}}</mat-card-title>
-    	<mat-card-subtitle>Username</mat-card-subtitle> <!--change to dynamic later-->
-		<mat-card-subtitle>1M Views</mat-card-subtitle> <!--change to dynamic later-->
+    	<mat-card-subtitle>Uploader: {{video.userId}}</mat-card-subtitle> <!--change to dynamic later-->
+		<mat-card-subtitle>{{video.viewCount}} Views</mat-card-subtitle> <!--change to dynamic later-->
 	</mat-card-header>
 </mat-card>

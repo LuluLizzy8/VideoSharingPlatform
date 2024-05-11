@@ -38,7 +38,6 @@ import { FeaturedComponent } from './featured/featured.component';
 import { VideoCardComponent } from './video-card/video-card.component';
 import { MatCardModule } from "@angular/material/card";
 import { CallbackComponent } from './callback/callback.component';
-import { CommentsComponent } from './comments/comments.component';
 import { MatMenuModule } from "@angular/material/menu"; 
 
 @NgModule({
@@ -56,8 +55,7 @@ import { MatMenuModule } from "@angular/material/menu";
     SidebarComponent,
     FeaturedComponent,
     VideoCardComponent,
-    CallbackComponent,
-    CommentsComponent
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
