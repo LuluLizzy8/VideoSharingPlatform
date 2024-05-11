@@ -19,7 +19,7 @@ export class VideoService {
 	const formData = new FormData()
     formData.append('file', fileEntry, fileEntry.name);
           
-	return this.httpClient.post<UploadVideoResponse>("http://localhost:8080/api/videos/", formData);
+	return this.httpClient.post<UploadVideoResponse>("http://localhost:8080/api/videos", formData);
   }
   
   uploadThumbnail(fileEntry: File, videoId: string): Observable<string> {
@@ -38,7 +38,11 @@ export class VideoService {
   }
   
   saveVideo(videoMetaData: VideoDto): Observable<VideoDto> {
-	return this.httpClient.put<VideoDto>("http://localhost:8080/api/videos/", videoMetaData);
+	return this.httpClient.put<VideoDto>("http://localhost:8080/api/videos", videoMetaData);
+  }
+  
+  getAllVideos(): Observable<Array<VideoDto>> {
+	return this.httpClient.get<Array<VideoDto>>("http://localhost:8080/api/videos");
   }
 
 } 

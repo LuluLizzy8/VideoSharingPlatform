@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.youtubeproject.Youtube.Clone.Model.Comment;
 import com.youtubeproject.Youtube.Clone.Service.VideoService;
 import com.youtubeproject.Youtube.Clone.dto.CommentDto;
 import com.youtubeproject.Youtube.Clone.dto.UploadVideoResponse;
@@ -55,12 +54,12 @@ public class VideoController {
 	}
 	
 	@PostMapping("{videoId}/comment")
-	@ResponseStatus(HttpStatus.OK)
+	@ResponseStatus(HttpStatus.CREATED)
 	public void addComment(@PathVariable String videoId, @RequestBody CommentDto commentDto) {
 		videoService.addComment(videoId, commentDto);
 	}
 	
-	@PostMapping("{videoId}/comment")
+	@GetMapping("{videoId}/comment")
 	@ResponseStatus(HttpStatus.OK)
 	public List<CommentDto> getAllComments(@PathVariable String videoId){
 		return videoService.getAllComments(videoId);
