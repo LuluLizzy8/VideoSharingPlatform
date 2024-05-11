@@ -27,7 +27,7 @@ export class VideoService {
     formData.append('file', fileEntry, fileEntry.name); //wrong
     formData.append("videoId", videoId);
        
-	return this.httpClient.post("http://localhost:8080/api/videos/thumbnail/", formData, {
+	return this.httpClient.post("http://localhost:8080/api/videos/thumbnail", formData, {
 		responseType: "text"
 	});
   }
