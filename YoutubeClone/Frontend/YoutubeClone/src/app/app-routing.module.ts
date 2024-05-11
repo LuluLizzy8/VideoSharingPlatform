@@ -8,6 +8,7 @@ import { SubscriptionsComponent } from "./subscriptions/subscriptions.component"
 import { HistoryComponent } from "./history/history.component";
 import { LikedVideosComponent } from "./liked-videos/liked-videos.component";
 import { FeaturedComponent } from "./featured/featured.component";
+import { CallbackComponent } from "./callback/callback.component";
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent,
@@ -20,6 +21,7 @@ const routes: Routes = [
 	{ path: 'upload-video', component: UploadVideoComponent, },
 	{ path: 'save-video-details/:videoId', component: SaveVideoDetailsComponent, },
 	{ path: 'video-detail/:videoId', component: VideoDetailComponent, },
+	{ path: 'callback', component: CallbackComponent, },
 ];
 
 @NgModule({

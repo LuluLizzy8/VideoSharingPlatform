@@ -30,12 +30,12 @@ public class UserController {
 	
 	@GetMapping("/register")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<String> register(@AuthenticationPrincipal Jwt jwt) {
+	public String register(@AuthenticationPrincipal Jwt jwt) {
 	    if (jwt == null) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No authentication information found.");
+	        return "No authentication information found.";
 	    }
-	    userRegistrationService.registerUser(jwt.getTokenValue());
-	    return ResponseEntity.ok("User Registration Successful");
+	    return userRegistrationService.registerUser(jwt.getTokenValue());
+	    //return ResponseEntity.ok("User Registration Successful");
 	}
 	
 	@PostMapping("subscribe/{userId}")

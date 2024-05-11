@@ -10,6 +10,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class UserRegistrationService {
 	private final UserRepository userRepository;
 	
 	//tokenValue is the Bearer Authentication Token
-	public void registerUser(String tokenValue) {
+	public String registerUser(String tokenValue) {
 		//make call to userinfo endpoint
 		
 		HttpRequest httpRequest = HttpRequest.newBuilder()
@@ -46,14 +47,20 @@ public class UserRegistrationService {
 			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			UserInfoDto userInfoDto = objectMapper.readValue(body, UserInfoDto.class);
 			
-			User user = new User();
-			user.setFirstName(userInfoDto.getGivenName());
-			user.setLastName(userInfoDto.getFamilyName());
-			user.setFullName(userInfoDto.getName());
-			user.setEmail(userInfoDto.getEmail());
-			user.setSub(userInfoDto.getSub());
-			
-			userRepository.save(user);
+			//check
+			Optional<User> userBySubject = userRepository.findBySub(userInfoDto.getSub());
+			if(userBySubject.isPresent()) {
+				return userBySubject.get().getId();
+			} else {
+				User user = new User();
+				user.setFirstName(userInfoDto.getGivenName());
+				user.setLastName(userInfoDto.getFamilyName());
+				user.setFullName(userInfoDto.getName());
+				user.setEmail(userInfoDto.getEmail());
+				user.setSub(userInfoDto.getSub());
+				
+				return userRepository.save(user).getId();
+			}
 
 		} catch (Exception exception) {
 			throw new RuntimeException("Exception occured when registering user", exception);
