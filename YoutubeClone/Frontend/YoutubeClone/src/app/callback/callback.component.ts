@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { Router } from "@angular/router"
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-callback',
@@ -10,12 +11,11 @@ import { Router } from "@angular/router"
 export class CallbackComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) {
-	this.userService.registerUser();
-	this.router.navigateByUrl("");
+	//this.userService.registerUser();
+	//console.log("registered user");
+	//this.router.navigateByUrl("");
   }
   
   ngOnInit(): void {
-	
-  }
+ }
 }
-

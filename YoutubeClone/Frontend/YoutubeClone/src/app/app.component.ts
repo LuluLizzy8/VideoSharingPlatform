@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 export class AppComponent implements OnInit {
   title = 'YoutubeClone';
   
-  constructor(private oidcSecurityService: OidcSecurityService) { }
+  constructor(private oidcSecurityService: OidcSecurityService, private userService: UserService) { }
   
   ngOnInit() {
     this.oidcSecurityService
@@ -17,6 +18,11 @@ export class AppComponent implements OnInit {
       .subscribe(({ isAuthenticated }) => {
         // If LoginResponse is a type that has isAuthenticated, make sure it's imported
         console.log('app is authenticated', isAuthenticated);
+        
+        if(isAuthenticated == true){
+        	this.userService.registerUser();
+			console.log("registered user");
+        }
       });
   }
 
