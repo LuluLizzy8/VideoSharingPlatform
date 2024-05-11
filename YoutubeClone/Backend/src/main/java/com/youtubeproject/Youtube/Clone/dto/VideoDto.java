@@ -21,8 +21,8 @@ public class VideoDto {
 	private String description;
 	//private String userId;
 	private Integer likes;
-	private String videoUrl;
 	private Integer viewCount;
+	private String videoUrl;
 	private String thumbnailUrl;
 	//private List<Comment> commentList;
 

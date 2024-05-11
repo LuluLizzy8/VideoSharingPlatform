@@ -6,6 +6,7 @@ export interface VideoDto {
 	description: string;
 	videoUrl: string;
 	thumbnailUrl: string;
-	likes: number; //how to get integer?
+	likes: number;
+	viewCount: number;
 	//commentList: Array<string>
 }

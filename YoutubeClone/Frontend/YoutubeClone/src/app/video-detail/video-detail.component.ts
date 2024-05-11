@@ -14,6 +14,8 @@ export class VideoDetailComponent {
 	videoTitle = "";
 	videoDescription = "";
 	videoAvaliable: boolean = false;
+	likes: number = 0;
+	viewCount: number = 0;
 
 	constructor(private activatedRoute: ActivatedRoute, private videoService: VideoService){ 
 		this.videoId = this.activatedRoute.snapshot.params['videoId'];
@@ -23,6 +25,8 @@ export class VideoDetailComponent {
 			this.videoTitle = data.title;
 			this.videoDescription = data.description;
 			this.videoAvaliable = true;
+			this.likes = data.likes;
+			this.viewCount = data.viewCount;
 		})
 
 
