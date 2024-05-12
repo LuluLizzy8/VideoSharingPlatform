@@ -60,7 +60,6 @@ March 14
   Viana: Finalized the midterm presentation materials and slides
   Smile: Finalized the midterm presentation materials and slides
 
-
 Iteration 3:
 Leftover from Last Iteration:
   Upload Videos to Database
@@ -70,6 +69,7 @@ Leftover from Last Iteration:
 
 Prioritized List of Features to be implemented:
   Creating backend classes
+
 March 21
 Elizabeth: Debugging and helping others download relative dependencies on Windows, solving maven, eclipse, and npm issues
 Lunjia: Debugging and downloading relative dependencies on MacOS, solving maven, eclipse, and npm issues
@@ -102,12 +102,34 @@ Resolve the problem of setting up our environment. The problem for MacOS was we 
 Elizabeth: Uploaded backend Video and Comment class to Git; wrote VideoController class, AWSService class, FileService interface; created AWS account, bucket, and passkey; added AWS S3 dependencies to backend pom.xml and updated application.properties file to include AWS S3; debugged, figuring out correct dependencies and formatting until YoutubeCloneApplication.java ran without errors
 Lunjia: Writing VideoService class of backend
 Viana: Writing user class of backend
-Smile: Writing user class of backend(Work with Viana)
+Smile: Writing user class of backend (worked with Viana)
 
 April 25
 Elizabeth: Angular upload video to AW3, updated lombok related constructors to fix bug, debugged and recreated the frontend angular application to include the needed and correct files, debugged to resolve the 403 error related to unauthorized access to file upload, debugged and fixed css and ts errors related to header component and save-video-details component, added angular theme to angular.json
 Lunjia: Worked on tags and upload thumbnail, save video to database.
 Viana: Created header component, save-video details component, video thumbnail function, rebased github and deleted faulty push from repository
-Smile: Created header component, save-video details component, video thumbnail function, debugged the errors we encountered(work with Viana)
+Smile: Created header component, save-video details component, video thumbnail function, debugged the errors we encountered (worked with Viana)
 
-May 2
+April 28:
+Elizabeth: Debugged save-video-details, started auth0 implementation but auth0 ran into issues
+Lunjia: Started auth0 implementation but ran into issues (debugged together)
+Viana: Started auth0 implementation but ran into issues (debugged together), upload video banner, video display interface, 
+Smile: Start auth0 implementation but ran into issues (debugged together), upload video banner, video display interface (worked with Viana)
+
+April 30:
+Elizabeth: Debugging auth0
+Lunjia: Sidebar component for home, history, subscriptions, video display cards on homepage (worked with Viana)
+Viana: Sidebar component for home, history, subscriptions, video display cards on homepage
+Smile: Debugging auth0 (worked with Elizabeth)
+
+May 9:
+Elizabeth: Fixed auth0, likevideo, viewcount, subscribe and unsubscribe, get all users, video history method
+Lunjia: Final documentation
+Viana: Like and subscribe button, subscribe and unsubscribe button, logout function 
+Smile: Like and subscribe button, subscribe and unsubscribe button, logout function (worked with Viana)
+
+May 11:
+Elizabeth: Save video timestamp, display subscription, removed dead code, debug (allow unauthorized users to view videos, add popups to let unauthorized user know they need to login to subscribe, like or upload videos), javadoc commentation on codes in backend
+Lunjia: Unit tests, javadoc commentation on codes in frontend
+Viana: Removed dead code, debug (allow unauthorized users to view videos, add popups to let unauthorized user know they need to login to subscribe, like or upload videos), javadoc commentation on codes in backend (worked with Elizabeth)
+Smile: Unit tests, javadoc commentation on codes in frontend (worked with Lunjia)
