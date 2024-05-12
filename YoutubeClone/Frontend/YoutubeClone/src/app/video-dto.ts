@@ -2,6 +2,7 @@
 export interface VideoDto {
 	id: string;
 	userId: string; 
+	userName: string;
 	title: string;
 	description: string;
 	videoUrl: string;

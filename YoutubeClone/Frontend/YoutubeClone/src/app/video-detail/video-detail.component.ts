@@ -18,6 +18,7 @@ export class VideoDetailComponent {
 	likes: number = 0;
 	viewCount: number = 0;
 	userId!: string;
+	userName!: string;
 	showSubscribeButton: boolean = true;
 	showUnsubscribeButton: boolean = false;
 
@@ -34,6 +35,7 @@ export class VideoDetailComponent {
 			this.likes = data.likes;
 			this.viewCount = data.viewCount;
 			this.userId = data.userId;
+			this.userName = data.userName;
 		})
 
 
@@ -50,16 +52,14 @@ export class VideoDetailComponent {
 	}
 	
 	subscribeToUser(){
-		let userId = this.userService.getUserId();
-		this.userService.subscribeToUser(userId).subscribe( data => {
+		this.userService.subscribeToUser(this.userId).subscribe( data => {
 			this.showUnsubscribeButton = true;
 			this.showSubscribeButton = false;
 		});
 	}
 	
 	unsubscribeToUser(){
-		let userId = this.userService.getUserId();
-		this.userService.unsubscribeToUser(userId).subscribe( data => {
+		this.userService.unsubscribeToUser(this.userId).subscribe( data => {
 			this.showUnsubscribeButton = false;
 			this.showSubscribeButton = true;
 		});

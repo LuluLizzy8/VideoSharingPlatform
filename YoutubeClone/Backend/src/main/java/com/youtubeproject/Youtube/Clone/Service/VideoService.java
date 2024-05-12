@@ -26,7 +26,8 @@ public class VideoService {
 		
 		var video = new Video();
 		video.setVideoUrl(videoURL);
-		video.setUserId(userService.getCurrentUser().getFullName());
+		video.setUserId(userService.getCurrentUser().getId());
+		video.setUserName(userService.getCurrentUser().getFullName());
 		
 		var savedVideo = videoRepository.save(video);
 		
@@ -104,6 +105,7 @@ public class VideoService {
 		videoDto.setLikes(video.getLikes().get());
 		videoDto.setViewCount(video.getViewCount().get());
 		videoDto.setUserId(video.getUserId());
+		videoDto.setUserName(video.getUserName());
 		videoDto.setPlaybackPositions(video.getPlaybackPositions());		
 		return videoDto;
 	}

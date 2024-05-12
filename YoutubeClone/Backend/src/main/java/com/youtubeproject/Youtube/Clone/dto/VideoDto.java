@@ -18,6 +18,7 @@ public class VideoDto {
 	private String title;
 	private String description;
 	private String userId;
+	private String userName;
 	private Integer likes;
 	private Integer viewCount;
 	private String videoUrl;

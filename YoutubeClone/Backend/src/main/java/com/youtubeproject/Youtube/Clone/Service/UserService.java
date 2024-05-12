@@ -76,6 +76,7 @@ public class UserService {
 		videoDto.setLikes(video.getLikes().get());
 		videoDto.setViewCount(video.getViewCount().get());
 		videoDto.setUserId(video.getUserId());
+		videoDto.setUserName(video.getUserName());
 		
 		return videoDto;
 	}

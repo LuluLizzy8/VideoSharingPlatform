@@ -28,6 +28,7 @@ export class SaveVideoDetailsComponent {
 	videoUrl!: string;
 	thumbnailUrl!: string;
 	videoAvaliable: boolean = false;
+	userId = "";
 	userName = "";
 	
 	constructor(private activatedRoute: ActivatedRoute, 
@@ -76,14 +77,14 @@ export class SaveVideoDetailsComponent {
 	        id: this.videoId,
 	        title: this.saveVideoDetailsForm.get('title')?.value,
 	        description: this.saveVideoDetailsForm.get('description')?.value,
-	        userId: '',  // Assuming you will provide this
+	        userId: '',
+	        userName: '',
 	        videoUrl: this.videoUrl,
-	        thumbnailUrl: response,  // Now we assign the response here
+	        thumbnailUrl: response,
 	        likes: 0,
 	        viewCount: 0
 	      };
 	
-	      // Save the video metadata now
 	      this.videoService.saveVideo(videoMetadata).subscribe(data => {
 	        this.matSnackBar.open("Video Metadata Updated successfully", "OK");
 	      });
