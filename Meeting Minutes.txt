@@ -60,6 +60,8 @@ March 14
   Viana: Finalized the midterm presentation materials and slides
   Smile: Finalized the midterm presentation materials and slides
 
+
+
 Iteration 3:
 Leftover from Last Iteration:
   Upload Videos to Database
@@ -84,6 +86,8 @@ Elizabeth: Writing Video and Comment class of backend
 Lunjia: Writing VideoService class of backend
 Viana: Writing User class of backend
 Smile: Writing RegisteredUser class of backend
+
+
 
 Iteration 4:
 Leftover from Last Iteration:
