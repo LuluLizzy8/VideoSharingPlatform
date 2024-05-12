@@ -52,14 +52,14 @@ public class Video {
 	private AtomicInteger likes = new AtomicInteger(0);
 	
 	/**
-     * The URL of the video
-     */
-	private String videoUrl;
-	
-	/**
      * The number of views the video has
      */
 	private AtomicInteger viewCount  = new AtomicInteger(0);
+	
+	/**
+     * The URL of the video
+     */
+	private String videoUrl;
 	
 	/**
      * The URL of the video thumbnail
