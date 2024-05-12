@@ -16,6 +16,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Service class for registering users by interacting with an external OAuth2 provider's userinfo endpoint.
+ *
+ * This service is responsible for fetching user information using a bearer token and registering the user
+ * in the local database if they do not already exist.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserRegistrationService {
@@ -25,9 +31,18 @@ public class UserRegistrationService {
 	
 	private final UserRepository userRepository;
 	
-	//tokenValue is the Bearer Authentication Token
+	/**
+     * Registers a user using the provided authentication token by fetching user details from an OAuth2 provider.
+     *
+     * This method contacts an external userinfo endpoint to retrieve user details and checks whether the user
+     * is already registered in the local database based on the 'sub' field. If the user
+     * is not already registered, it saves the user's details in the database.
+     *
+     * @param tokenValue the Bearer token used for authentication with the userinfo endpoint
+     * @return the internal database ID of the user, whether they were just registered or found in the database
+     * @throws RuntimeException if any I/O errors occur during the HTTP request or if there is a problem during user data deserialization
+     */
 	public String registerUser(String tokenValue) {
-		//make call to userinfo endpoint
 		
 		HttpRequest httpRequest = HttpRequest.newBuilder()
 				.GET()
