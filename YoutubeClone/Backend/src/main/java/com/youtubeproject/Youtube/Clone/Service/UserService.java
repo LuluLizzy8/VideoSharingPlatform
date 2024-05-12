@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,12 @@ public class UserService {
 	
 	private final UserRepository userRepository;
 	private final VideoRepository videoRepository;
+	
+	public boolean hasCurrentUser() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // Check if authentication is not null, the user is authenticated, and the principal is an instance of Jwt
+        return authentication != null && authentication.isAuthenticated() && authentication.getPrincipal() instanceof Jwt;
+    }
 	
 	public User getCurrentUser() {
 		String sub = ((Jwt)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getClaim("sub");

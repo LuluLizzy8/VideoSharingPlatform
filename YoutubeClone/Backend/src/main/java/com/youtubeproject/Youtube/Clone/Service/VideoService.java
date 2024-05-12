@@ -68,8 +68,9 @@ public class VideoService {
 		Video savedVideo = getVideoById(videoId);
 		
 		increaseViewCount(videoId);
-		userService.addVideoToHistory(videoId);
-		
+		if(userService.hasCurrentUser()) {
+			userService.addVideoToHistory(videoId);
+		}		
 		return mapToVideoDto(savedVideo);
 	}
 	

@@ -25,6 +25,7 @@ package com.youtubeproject.Youtube.Clone.Configuration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -52,7 +53,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(a -> a
-                .requestMatchers("/api/videos/**").authenticated()
+        		.requestMatchers(HttpMethod.GET, "/api/videos/**").permitAll()  // Permit all GET requests to /api/videos
+                .requestMatchers(HttpMethod.POST, "/api/videos/**").authenticated()
                 .anyRequest().permitAll()
             )
             .csrf(csrf -> csrf.disable())
