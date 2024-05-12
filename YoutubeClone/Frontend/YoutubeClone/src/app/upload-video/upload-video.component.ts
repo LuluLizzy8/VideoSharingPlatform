@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { VideoService } from '../video.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from '../user.service';
+
 
 @Component({
   selector: 'app-upload-video',
@@ -13,9 +16,13 @@ export class UploadVideoComponent {
   public files: NgxFileDropEntry[] = [];
   fileUploaded: boolean = false;
   fileEntry: FileSystemFileEntry | undefined;
+  isAuthenticated: boolean = false;
+
   
-  constructor(private videoService: VideoService, private router: Router){
-	
+  constructor(private videoService: VideoService, private router: Router, private matSnackBar: MatSnackBar, private userService: UserService){
+	if(this.userService.getUserId() != ""){
+			this.isAuthenticated = true;
+		}
   }
   
   public dropped(files: NgxFileDropEntry[]) {
@@ -52,17 +59,21 @@ export class UploadVideoComponent {
   }
   
   uploadVideo(){
-	if(this.fileEntry !== undefined){
-		console.log(this.fileEntry);
-		
-		this.fileEntry.file(file => {this.videoService.uploadVideo(file).subscribe(data =>{
-			//http://localhost:4200/save-video-details/{{videoId}}
-			console.log(data.videoId)
-			this.router.navigateByUrl("/save-video-details/" + data.videoId);
-
+	if(this.isAuthenticated){
+		if(this.fileEntry !== undefined){
+			console.log(this.fileEntry);
+			
+			this.fileEntry.file(file => {this.videoService.uploadVideo(file).subscribe(data =>{
+				//http://localhost:4200/save-video-details/{{videoId}}
+				console.log(data.videoId)
+				this.router.navigateByUrl("/save-video-details/" + data.videoId);
+	
+				})
 			})
-		})
-		
+			
+		}
+	} else{
+		this.matSnackBar.open("Login to Upload Videos", "OK");
 	}
   }
 }

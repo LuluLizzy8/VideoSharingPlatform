@@ -4,8 +4,6 @@ import { ActivatedRoute } from "@angular/router";
 import { VideoService } from "../video.service";
 import { UserService } from '../user.service';
 
-
-
 @Component({
   selector: 'app-video-detail',
   templateUrl: './video-detail.component.html',
