@@ -54,7 +54,7 @@ public class UserService {
 		User currentUser = getCurrentUser();
 		currentUser.addToSubscribedUsers(userId);
 		User targetUser = getUserById(userId);
-        targetUser.addToSubscribers(targetUser.getId());
+        targetUser.addToSubscribers(currentUser.getId());
         userRepository.save(currentUser);
         userRepository.save(targetUser);
 	}
@@ -63,7 +63,7 @@ public class UserService {
 		User currentUser = getCurrentUser();
 		currentUser.removeFromSubscribedUsers(userId);
 		User targetUser = getUserById(userId);
-        targetUser.removeFromSubscribers(targetUser.getId());
+        targetUser.removeFromSubscribers(currentUser.getId());
         userRepository.save(currentUser);
         userRepository.save(targetUser);
 	}
