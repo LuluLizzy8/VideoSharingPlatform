@@ -11,6 +11,10 @@ export class UserService {
   
   constructor(private httpClient: HttpClient) { }
   
+  isSubscribedToUser(userId: string): Observable<boolean> {
+    return this.httpClient.get<boolean>(`http://localhost:8080/api/user/isSubscribed/${userId}`);
+  }
+  
   subscribeToUser(userId: string): Observable<boolean> {
 	return this.httpClient.post<boolean>("http://localhost:8080/api/user/subscribe/" + userId, null);
   }

@@ -56,6 +56,11 @@ public class UserService {
 		currentUser.addToVideoHistory(videoId);
 		userRepository.save(currentUser);
 	}
+	
+	public boolean isSubscribedToUser(String userId) {
+	    User currentUser = getCurrentUser();
+	    return currentUser.getSubscribedTo().contains(userId);
+	  }
 
 	public void subscribeToUser(String userId) {
 		User currentUser = getCurrentUser();

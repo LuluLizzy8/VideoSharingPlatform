@@ -42,7 +42,10 @@ export class VideoDetailComponent {
 	}
 	
 	ngOnInit(): void {
-		
+		this.videoService.getVideo(this.videoId).subscribe(data => {
+	      // set properties from data...
+	      this.checkSubscriptionStatus();
+	    });
 	}
 	
 	likeVideo() {
@@ -50,6 +53,13 @@ export class VideoDetailComponent {
 			this.likes = data.likes;
 		})
 	}
+	
+	checkSubscriptionStatus() {
+	    this.userService.isSubscribedToUser(this.userId).subscribe(isSubscribed => {
+	      this.showSubscribeButton = !isSubscribed;
+	      this.showUnsubscribeButton = isSubscribed;
+	    });
+	  }
 	
 	subscribeToUser(){
 		this.userService.subscribeToUser(this.userId).subscribe( data => {

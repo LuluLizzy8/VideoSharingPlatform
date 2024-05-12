@@ -36,6 +36,11 @@ public class UserController {
 	    return userRegistrationService.registerUser(jwt.getTokenValue());
 	}
 	
+	@GetMapping("/isSubscribed/{userId}")
+	  public boolean isSubscribedToUser(@PathVariable String userId) {
+	    return userService.isSubscribedToUser(userId);
+	  }
+	
 	@PostMapping("subscribe/{userId}")
 	@ResponseStatus(HttpStatus.OK)
 	public boolean subscribeToUser(@PathVariable String userId) {
