@@ -26,14 +26,11 @@ public class FileServiceTest {
 
     @Test
     void testUploadFileSuccess() throws Exception {
-        // Arrange
         MultipartFile file = new MockMultipartFile("file", "filename.txt", "text/plain", "content".getBytes());
         when(fileService.uploadFile(any(MultipartFile.class))).thenReturn("http://example.com/filename.txt");
 
-        // Act
         String result = fileService.uploadFile(file);
 
-        // Assert
         assertNotNull(result);
         assertEquals("http://example.com/filename.txt", result);
         verify(fileService).uploadFile(file);
@@ -42,11 +39,9 @@ public class FileServiceTest {
 
     @Test
     void testUploadFileHandlingException() {
-        // Arrange
         MultipartFile file = new MockMultipartFile("file", "filename.txt", "text/plain", "content".getBytes());
         when(fileService.uploadFile(any(MultipartFile.class))).thenThrow(new RuntimeException("Failed to store file"));
 
-        // Act & Assert
         Exception exception = assertThrows(RuntimeException.class, () -> {
             fileService.uploadFile(file);
         });
