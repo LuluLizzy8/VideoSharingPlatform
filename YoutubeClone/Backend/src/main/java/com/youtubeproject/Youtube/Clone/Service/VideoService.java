@@ -38,26 +38,22 @@ public class VideoService {
 		video.setUserName(userService.getCurrentUser().getFullName());
 		
 		var savedVideo = videoRepository.save(video);
-		
 		return new UploadVideoResponse(savedVideo.getId(), savedVideo.getVideoUrl());
 	}
 
 	
 	/**
-	 * Edits metadata of a video
+	 * Edits metadata of a video by finding video and mapping the video dto fields to video and saving it to the repository
 	 * @param videoDto The DTO containing the updated metadata for the video
 	 * @return The DTO containing the edited video metadata
 	 */
 	public VideoDto editVideo(VideoDto videoDto) {
-		//find the video by video id 
 		var savedVideo = getVideoById(videoDto.getId());
 		
-		//map the videodto fields to video
 		savedVideo.setTitle(videoDto.getTitle());
 		savedVideo.setDescription(videoDto.getDescription());
 		savedVideo.setThumbnailUrl(videoDto.getThumbnailUrl());
 		
-		//save video to database
 		videoRepository.save(savedVideo);
 		return videoDto;
 		
@@ -104,6 +100,10 @@ public class VideoService {
 		return mapToVideoDto(savedVideo);
 	}
 	
+	/**
+	 * Increases the view count of a video
+	 * @param videoId The ID of the video to increase the view count for
+	 */
 	private void increaseViewCount(String videoId) {
 		Video videoById = getVideoById(videoId);
 		videoById.incrementViewCount();
@@ -125,12 +125,15 @@ public class VideoService {
 			videoById.incrementLikes();
 			userService.addToLikedVideos(videoId);
 		}
-		
 		videoRepository.save(videoById);
-		
 		return mapToVideoDto(videoById);
 	}
 	
+	/**
+	 * Maps a Video object to a VideoDto object
+	 * @param video The Video object to map
+	 * @return The VideoDto object
+	 */
 	private VideoDto mapToVideoDto(Video video) {
 		VideoDto videoDto = new VideoDto();
 		videoDto.setVideoUrl(video.getVideoUrl());
