@@ -21,7 +21,6 @@ public class User {
     private String firstName;
     private String lastName;
     private String fullName;
-    private String picture;
     private String email;
     private String sub;
     private Set<String> subscribedTo = new HashSet<>();
