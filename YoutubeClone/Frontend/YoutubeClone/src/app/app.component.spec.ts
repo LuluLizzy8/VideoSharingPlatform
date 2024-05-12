@@ -1,35 +1,43 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ProfileComponent } from './profile/profile.component';
+import { UserService } from './user.service';
 
-describe('AppComponent', () => {
+describe('ProfileComponent', () => {
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
+  let userServiceMock: jasmine.SpyObj<UserService>;
+
   beforeEach(async () => {
+    // Create a spy object for UserService with a mock method 'getUserId'
+    userServiceMock = jasmine.createSpyObj('UserService', ['getUserId']);
+
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      declarations: [ ProfileComponent ],
+      // Provide the mock instead of the actual UserService
+      providers: [ { provide: UserService, useValue: userServiceMock } ]
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'YoutubeClone'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('YoutubeClone');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ProfileComponent);
+    component = fixture.componentInstance;
+    
+    // Mock the return value of getUserId
+    userServiceMock.getUserId.and.returnValue('user123');
+    
+    // Trigger initial data binding and ngOnInit lifecycle hook
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, YoutubeClone');
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should set userId based on UserService', () => {
+    // Ensure the service method is called
+    expect(userServiceMock.getUserId).toHaveBeenCalled();
+
+    // Check if the component's userId is updated correctly
+    expect(component.userId).toEqual('user123');
   });
 });
