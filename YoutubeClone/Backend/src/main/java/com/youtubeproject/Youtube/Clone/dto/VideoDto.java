@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-//on the client side
-//request body
 public class VideoDto {
 	private String id;
 	private String title;
