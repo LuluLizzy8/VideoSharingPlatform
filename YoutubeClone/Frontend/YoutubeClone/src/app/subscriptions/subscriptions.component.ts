@@ -7,7 +7,7 @@ import { UserService } from '../user.service';
   styleUrl: './subscriptions.component.css'
 })
 export class SubscriptionsComponent implements OnInit {
-  subscribedUserNames: string[] = [];  // Array to hold the names
+  subscribedUserNames: string[] = []; 
 
   constructor(private userService: UserService) { }
 
