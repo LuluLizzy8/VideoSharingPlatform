@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from "@angular/router";
 import { VideoService } from "../video.service";
 import { UserService } from '../user.service';
+
+
 
 @Component({
   selector: 'app-video-detail',
@@ -21,10 +24,12 @@ export class VideoDetailComponent {
 	userName!: string;
 	showSubscribeButton: boolean = true;
 	showUnsubscribeButton: boolean = false;
+	isAuthenticated: boolean = false;
 
 	constructor(private activatedRoute: ActivatedRoute, 
 				private videoService: VideoService,
-				private userService: UserService){ 
+				private userService: UserService,
+				private matSnackBar: MatSnackBar){ 
 		this.videoId = this.activatedRoute.snapshot.params['videoId'];
 		this.videoService.getVideo(this.videoId).subscribe(data => {
 			console.log(data); 
@@ -37,8 +42,9 @@ export class VideoDetailComponent {
 			this.userId = data.userId;
 			this.userName = data.userName;
 		})
-
-
+		if(this.userService.getUserId() != ""){
+			this.isAuthenticated = true;
+		}
 	}
 	
 	ngOnInit(): void {
@@ -49,9 +55,13 @@ export class VideoDetailComponent {
 	}
 	
 	likeVideo() {
-		this.videoService.likeVideo(this.videoId).subscribe( data => {
-			this.likes = data.likes;
-		})
+		if(this.isAuthenticated){
+			this.videoService.likeVideo(this.videoId).subscribe( data => {
+				this.likes = data.likes;
+			})
+		} else{
+			this.matSnackBar.open("Login to Like", "OK");
+		}
 	}
 	
 	checkSubscriptionStatus() {
@@ -62,10 +72,14 @@ export class VideoDetailComponent {
 	  }
 	
 	subscribeToUser(){
-		this.userService.subscribeToUser(this.userId).subscribe( data => {
-			this.showUnsubscribeButton = true;
-			this.showSubscribeButton = false;
-		});
+		if(this.isAuthenticated){
+			this.userService.subscribeToUser(this.userId).subscribe( data => {
+				this.showUnsubscribeButton = true;
+				this.showSubscribeButton = false;
+			});
+		} else{
+			this.matSnackBar.open("Login to Subscribe", "OK");
+		}
 	}
 	
 	unsubscribeToUser(){
