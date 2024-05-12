@@ -33,5 +33,9 @@ export class UserService {
   getUserId(): string {
 	return this.userId;
   }
+  
+  getUserName(): Observable<string> {
+	return this.httpClient.get<string>('http://localhost:8080/api/user/name');
+  }
 
 }

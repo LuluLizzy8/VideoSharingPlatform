@@ -12,6 +12,7 @@
        <mat-icon>account_circle</mat-icon>
      </button>
 	 <mat-menu #menu="matMenu">
+		<button mat-menu-item routerLink="./profile">My Profile</button>
 	   <button mat-menu-item (click)="logout()">Logout</button>
 	 </mat-menu>
 	 <ng-template #noAuth>

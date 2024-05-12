@@ -103,4 +103,8 @@ public class UserService {
                 .map(User::getFullName)
                 .collect(Collectors.toSet());
 	}
+	
+	public String getName() {
+		return getCurrentUser().getFullName();
+	}
 }

@@ -11,9 +11,6 @@ import { Router } from "@angular/router";
 export class CallbackComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) {
-	//this.userService.registerUser();
-	//console.log("registered user");
-	//this.router.navigateByUrl("");
   }
   
   ngOnInit(): void {

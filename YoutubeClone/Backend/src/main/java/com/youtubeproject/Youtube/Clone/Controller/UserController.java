@@ -61,4 +61,10 @@ public class UserController {
 	public Set<String> getSubscriptions(){
 		return userService.getSubscriptions();
 	}
+	
+	@GetMapping("/name")
+	@ResponseStatus(HttpStatus.OK)
+	public String getName(){
+		return userService.getName();
+	}
 }

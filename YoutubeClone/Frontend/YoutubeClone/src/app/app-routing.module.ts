@@ -8,6 +8,7 @@ import { SubscriptionsComponent } from "./subscriptions/subscriptions.component"
 import { HistoryComponent } from "./history/history.component";
 import { FeaturedComponent } from "./featured/featured.component";
 import { CallbackComponent } from "./callback/callback.component";
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent,
@@ -16,10 +17,10 @@ const routes: Routes = [
 		{ path: 'history', component: HistoryComponent, },
 		{ path: 'featured', component: FeaturedComponent, },
 		{ path: 'video-detail/:videoId', component: VideoDetailComponent, },
-
+		{ path: 'profile', component: ProfileComponent, },
+		{ path: 'upload-video', component: UploadVideoComponent, },
+		{ path: 'save-video-details/:videoId', component: SaveVideoDetailsComponent, },
 	]},
-	{ path: 'upload-video', component: UploadVideoComponent, },
-	{ path: 'save-video-details/:videoId', component: SaveVideoDetailsComponent, },
 	{ path: 'callback', component: CallbackComponent, },
 	
 ];
