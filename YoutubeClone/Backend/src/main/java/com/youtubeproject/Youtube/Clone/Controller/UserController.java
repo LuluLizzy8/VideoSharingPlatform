@@ -13,6 +13,7 @@ import com.youtubeproject.Youtube.Clone.dto.VideoDto;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -33,7 +34,6 @@ public class UserController {
 	        return "No authentication information found.";
 	    }
 	    return userRegistrationService.registerUser(jwt.getTokenValue());
-	    //return ResponseEntity.ok("User Registration Successful");
 	}
 	
 	@PostMapping("subscribe/{userId}")
@@ -54,5 +54,11 @@ public class UserController {
 	@ResponseStatus(HttpStatus.OK)
 	public List<VideoDto> userHistory(){
 		return userService.userHistory();
+	}
+	
+	@GetMapping("/subscriptions")
+	@ResponseStatus(HttpStatus.OK)
+	public Set<String> getSubscriptions(){
+		return userService.getSubscriptions();
 	}
 }

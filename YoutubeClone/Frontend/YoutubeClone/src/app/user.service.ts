@@ -26,6 +26,10 @@ export class UserService {
 		})
   }
   
+  getSubscriptions(): Observable<Array<string>> {
+    return this.httpClient.get<Array<string>>('http://localhost:8080/api/user/subscriptions');
+  }
+  
   getUserId(): string {
 	return this.userId;
   }

@@ -3,7 +3,11 @@
 </div>
 
 <div fxLayout="row wrap" fxLayoutGap="12px grid">
-	<div fxFlex="30%" *ngFor="let num of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
-		<app-video-card></app-video-card>
-	</div>
+  <div fxFlex="30%" *ngFor="let userName of subscribedUserNames">
+    <mat-card>
+      <mat-card-content>
+        {{ userName }}
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
