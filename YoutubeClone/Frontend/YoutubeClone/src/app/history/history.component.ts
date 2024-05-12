@@ -13,7 +13,6 @@ export class HistoryComponent implements OnInit {
   constructor(private videoService: VideoService) { }
 
   ngOnInit(): void {
-    // Assuming the user ID is available somehow, e.g., from a user service or auth service
     this.videoService.getVideoHistory().subscribe(videos => {
       this.historyVideos = videos;
     });

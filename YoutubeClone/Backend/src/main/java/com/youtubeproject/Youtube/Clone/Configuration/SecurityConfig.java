@@ -1,25 +1,3 @@
-/*package com.youtubeproject.Youtube.Clone.Configuration;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.web.SecurityFilterChain;
-
-@Configuration
-public class SecurityConfig {
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .httpBasic().disable()  // Disable basic authentication
-            .csrf().disable()       // Disable CSRF 
-            .authorizeHttpRequests(authorize -> authorize
-                .anyRequest().permitAll()); // Allow all requests without authentication
-
-        return http.build();
-    }
-}*/
 package com.youtubeproject.Youtube.Clone.Configuration;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -39,6 +17,13 @@ import org.springframework.security.oauth2.core.OAuth2TokenValidatorResult;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * Configuration class for setting up security and JWT token validation.
+ * <p>
+ * This class enables web security and configures JWT authentication. It also specifies how the security filters
+ * are applied to HTTP requests to specify what requests can only be accessed by authorized users.
+ * </p>
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -49,6 +34,15 @@ public class SecurityConfig {
     @Value("${auth0.audience}")
     private String audience;
     
+    /**
+     * Configures the security filter chain to apply JWT authentication and rules for what http methods need authentication
+     * to incoming requests.
+     *
+     * @param http the {@link HttpSecurity} to configure
+     * @return the configured {@link SecurityFilterChain}
+     * @throws Exception if an error occurs during configuration
+     * @throws HttpSecurity 
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -64,14 +58,27 @@ public class SecurityConfig {
         return http.build();
     }
     
-  
+    /**
+     * Validator for checking if the JWT contains the required audience.
+     */
     public static class AudienceValidator implements OAuth2TokenValidator<Jwt> {
         private final String audience;
-
+        
+        /**
+         * Constructs a new AudienceValidator with the specified audience.
+         *
+         * @param audience the audience to validate within the JWT
+         */
         public AudienceValidator(String audience) {
             this.audience = audience;
         }
-
+        
+        /**
+         * Validates if the JWT contains the specified audience.
+         *
+         * @param jwt the JWT to validate
+         * @return the result of the token validation
+         */
         @Override
         public OAuth2TokenValidatorResult validate(Jwt jwt) {
             if (jwt.getAudience().contains(audience)) {
@@ -81,7 +88,11 @@ public class SecurityConfig {
         }
     }
 
-    
+    /**
+     * Configures and returns a {@link JwtDecoder} with issuer and audience validations.
+     *
+     * @return a configured {@link JwtDecoder}
+     */
     @Bean
     public JwtDecoder jwtDecoder() {
         NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withIssuerLocation(issuer).build();

@@ -25,7 +25,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
       this.videoId = params['videoId'];
       this.videoService.getPlaybackPosition(this.videoId).subscribe(position => {
         this.player.nativeElement.addEventListener('loadedmetadata', () => {
-          this.player.nativeElement.currentTime = position; // Set the playback position when the metadata is loaded
+          this.player.nativeElement.currentTime = position;
         });
         this.startPeriodicSave();
       });
@@ -41,14 +41,10 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   }
 
   handleTimeUpdate = () => {
-    if (!this.player.nativeElement.paused) { // Only save position if video is playing
+    if (!this.player.nativeElement.paused) {
       const currentPosition = this.player.nativeElement.currentTime;
-      if(Math.abs(currentPosition - this.lastSavedPosition) > 3) { // Save the position every 3 seconds of change
-        if(currentPosition == 0){ 
-			 //if current position == 0 dont save position
-		} else{
-			this.savePlaybackPosition();
-		}
+      if(Math.abs(currentPosition - this.lastSavedPosition) > 1) {
+      	this.savePlaybackPosition();
       }
     }
   }

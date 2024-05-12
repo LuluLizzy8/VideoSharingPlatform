@@ -53,10 +53,7 @@ public class UserRegistrationService {
 				return userBySubject.get().getId();
 			} else {
 				User user = new User();
-				user.setFirstName(userInfoDto.getGivenName());
-				user.setLastName(userInfoDto.getFamilyName());
 				user.setFullName(userInfoDto.getName());
-				user.setEmail(userInfoDto.getEmail());
 				user.setSub(userInfoDto.getSub());
 				
 				return userRepository.save(user).getId();

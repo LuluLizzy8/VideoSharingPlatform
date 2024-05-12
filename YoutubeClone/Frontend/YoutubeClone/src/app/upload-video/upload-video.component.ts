@@ -29,21 +29,13 @@ export class UploadVideoComponent {
     this.files = files;
     for (const droppedFile of files) {
 
-      // Is it a file?
       if (droppedFile.fileEntry.isFile) {
         this.fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         this.fileEntry.file((file: File) => {
-
-          // Here you can access the real file
           console.log(droppedFile.relativePath, file);
-			
-			
 		  this.fileUploaded = true;
-		
-
         });
       } else {
-        // It was a directory (empty directories are added, otherwise only files)
         const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
         console.log(droppedFile.relativePath, fileEntry);
       }
@@ -64,7 +56,6 @@ export class UploadVideoComponent {
 			console.log(this.fileEntry);
 			
 			this.fileEntry.file(file => {this.videoService.uploadVideo(file).subscribe(data =>{
-				//http://localhost:4200/save-video-details/{{videoId}}
 				console.log(data.videoId)
 				this.router.navigateByUrl("/save-video-details/" + data.videoId);
 	

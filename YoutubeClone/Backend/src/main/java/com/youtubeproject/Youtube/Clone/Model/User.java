@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.Set; //use set or list?
+import java.util.Set;
 
 /**
  * Represents a user in the YouTube Clone application.
