@@ -13,6 +13,9 @@ import com.youtubeproject.Youtube.Clone.dto.VideoDto;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Service class for managing video-related operations in the YouTube Clone application
+ */
 @Service
 @RequiredArgsConstructor
 public class VideoService {
@@ -21,6 +24,11 @@ public class VideoService {
 	private final VideoRepository videoRepository;
 	private final UserService userService;
 	
+	/**
+	 * Uploads a video file
+	 * @param multipartFile The video file to upload
+	 * @return An UploadVideoResponse containing information about the uploaded video
+	 */
 	public UploadVideoResponse uploadVideo(MultipartFile multipartFile) {
 		String videoURL = awsService.uploadFile(multipartFile);
 		
@@ -32,9 +40,14 @@ public class VideoService {
 		var savedVideo = videoRepository.save(video);
 		
 		return new UploadVideoResponse(savedVideo.getId(), savedVideo.getVideoUrl());
-		
 	}
 
+	
+	/**
+	 * Edits metadata of a video
+	 * @param videoDto The DTO containing the updated metadata for the video
+	 * @return The DTO containing the edited video metadata
+	 */
 	public VideoDto editVideo(VideoDto videoDto) {
 		//find the video by video id 
 		var savedVideo = getVideoById(videoDto.getId());
@@ -50,6 +63,12 @@ public class VideoService {
 		
 	}
 
+	/**
+	 * Uploads a thumbnail image for a video
+	 * @param file The thumbnail image file to upload
+	 * @param videoId The ID of the video associated with the thumbnail
+	 * @return The URL of the uploaded thumbnail
+	 */
 	public String uploadThumbnail(MultipartFile file, String videoId) {
 		var savedVideo = getVideoById(videoId);
 		
@@ -59,11 +78,22 @@ public class VideoService {
 		return thumbnailUrl;
 	}
 	
+	/**
+	 * Retrieves a video by its ID
+	 * @param videoId The ID of the video
+	 * @return The video object
+	 * @throws IllegalArgumentException If the video ID is not found
+	 */
 	public Video getVideoById(String videoId) {
 		return videoRepository.findById(videoId)
 			.orElseThrow(()->new IllegalArgumentException("video id not found" + videoId));
 	}
 
+	/**
+	 * Retrieves details of a specific video
+	 * @param videoId The ID of the video to retrieve details for
+	 * @return The DTO containing the details of the specified video
+	 */
 	public VideoDto getVideoDetails(String videoId) {
 		Video savedVideo = getVideoById(videoId);
 		
@@ -80,6 +110,11 @@ public class VideoService {
 		videoRepository.save(videoById);
 	}
 
+	/**
+	 * Likes or unlikes a video
+	 * @param videoId The ID of the video to like/unlike
+	 * @return The DTO containing the updated details of the liked/unliked video
+	 */
 	public VideoDto likeVideo(String videoId) {
 		Video videoById = getVideoById(videoId);
 		
@@ -111,10 +146,19 @@ public class VideoService {
 		return videoDto;
 	}
 
+	/**
+	 * Retrieves details of all videos
+	 * @return A list of DTOs containing details of all videos
+	 */
 	public List<VideoDto> getAllVideos() {
 		return videoRepository.findAll().stream().map(this::mapToVideoDto).toList();
 	}
 	
+	/**
+	 * Saves the timestamp position of a video
+	 * @param videoId The ID of the video to save the timestamp position for
+	 * @param position The timestamp position saved
+	 */
 	public void savePlaybackPosition(String videoId, float position) {
 	    User currentUser = userService.getCurrentUser();
 	    Video video = videoRepository.findById(videoId).orElseThrow();
@@ -122,6 +166,11 @@ public class VideoService {
 	    videoRepository.save(video);
 	}
 
+	/**
+	 * Retrieves the timestamp position of a video
+	 * @param videoId The ID of the video to retrieve the timestamp position for
+	 * @return The timestamp position of the video
+	 */
 	public Float getPlaybackPosition(String videoId) {
 	    User currentUser = userService.getCurrentUser();
 	    Video video = videoRepository.findById(videoId).orElseThrow();
