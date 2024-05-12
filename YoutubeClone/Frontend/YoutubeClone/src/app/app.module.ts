@@ -36,7 +36,6 @@ import { MatListModule } from "@angular/material/list";
 import { FeaturedComponent } from './featured/featured.component';
 import { VideoCardComponent } from './video-card/video-card.component';
 import { MatCardModule } from "@angular/material/card";
-import { CallbackComponent } from './callback/callback.component';
 import { MatMenuModule } from "@angular/material/menu";
 import { ProfileComponent } from './profile/profile.component'; 
 
@@ -54,7 +53,6 @@ import { ProfileComponent } from './profile/profile.component';
     SidebarComponent,
     FeaturedComponent,
     VideoCardComponent,
-    CallbackComponent,
     ProfileComponent
   ],
   imports: [
