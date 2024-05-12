@@ -3,6 +3,7 @@ package com.youtubeproject.Youtube.Clone.Controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -56,6 +57,18 @@ public class VideoController {
 	@ResponseStatus(HttpStatus.OK)
 	public List<VideoDto> getAllVideos(){
 		return videoService.getAllVideos();
+	}
+	
+	@PostMapping("savePosition/{videoId}/{position}")
+	public ResponseEntity<Void> savePlaybackPosition(@PathVariable String videoId, @PathVariable Float position) {
+	    videoService.savePlaybackPosition(videoId, position);
+	    return ResponseEntity.ok().build();
+	}
+
+	@GetMapping("getPosition/{videoId}")
+	public ResponseEntity<Float> getPlaybackPosition(@PathVariable String videoId) {
+	    float position = videoService.getPlaybackPosition(videoId);
+	    return ResponseEntity.ok(position);
 	}
 	
 	

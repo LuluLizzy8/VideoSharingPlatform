@@ -2,8 +2,6 @@ package com.youtubeproject.Youtube.Clone.Service;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
@@ -93,4 +91,5 @@ public class UserService {
 		return userRepository.findById(userId)
 				.orElseThrow(() -> new IllegalArgumentException("Cannot find user with userId - " + userId));
 	}
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.youtubeproject.Youtube.Clone.Model.User;
 import com.youtubeproject.Youtube.Clone.Model.Video;
 import com.youtubeproject.Youtube.Clone.Repository.VideoRepository;
 import com.youtubeproject.Youtube.Clone.dto.UploadVideoResponse;
@@ -103,11 +104,24 @@ public class VideoService {
 		videoDto.setLikes(video.getLikes().get());
 		videoDto.setViewCount(video.getViewCount().get());
 		videoDto.setUserId(video.getUserId());
-		
+		videoDto.setPlaybackPositions(video.getPlaybackPositions());		
 		return videoDto;
 	}
 
 	public List<VideoDto> getAllVideos() {
 		return videoRepository.findAll().stream().map(this::mapToVideoDto).toList();
+	}
+	
+	public void savePlaybackPosition(String videoId, float position) {
+	    User currentUser = userService.getCurrentUser();
+	    Video video = videoRepository.findById(videoId).orElseThrow();
+	    video.getPlaybackPositions().put(currentUser.getId(), position);
+	    videoRepository.save(video);
+	}
+
+	public Float getPlaybackPosition(String videoId) {
+	    User currentUser = userService.getCurrentUser();
+	    Video video = videoRepository.findById(videoId).orElseThrow();
+	    return video.getPlaybackPositions().getOrDefault(currentUser.getId(), (float) 0);
 	}
 }

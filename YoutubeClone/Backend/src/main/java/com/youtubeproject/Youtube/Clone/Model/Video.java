@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Document(value = "Video")
@@ -24,6 +26,7 @@ public class Video {
 	private String videoUrl;
 	private AtomicInteger viewCount  = new AtomicInteger(0);
 	private String thumbnailUrl;
+	private Map<String, Float> playbackPositions = new HashMap<>();
 	
 	public void incrementLikes() {
 		likes.incrementAndGet();

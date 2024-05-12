@@ -1,5 +1,8 @@
 package com.youtubeproject.Youtube.Clone.dto;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,5 +22,7 @@ public class VideoDto {
 	private Integer viewCount;
 	private String videoUrl;
 	private String thumbnailUrl;
+	private Map<String, Float> playbackPositions = new HashMap<>();
+
 
 }
