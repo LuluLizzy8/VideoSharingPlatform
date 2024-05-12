@@ -15,10 +15,11 @@ const routes: Routes = [
 		{ path: 'subscriptions', component: SubscriptionsComponent, },
 		{ path: 'history', component: HistoryComponent, },
 		{ path: 'featured', component: FeaturedComponent, },
+		{ path: 'video-detail/:videoId', component: VideoDetailComponent, },
+
 	]},
 	{ path: 'upload-video', component: UploadVideoComponent, },
 	{ path: 'save-video-details/:videoId', component: SaveVideoDetailsComponent, },
-	{ path: 'video-detail/:videoId', component: VideoDetailComponent, },
 	{ path: 'callback', component: CallbackComponent, },
 	
 ];
