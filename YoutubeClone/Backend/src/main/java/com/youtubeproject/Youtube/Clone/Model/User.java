@@ -24,26 +24,11 @@ public class User {
      */
 	@Id
     private String id;
-	
-	/**
-     * The first name of the user
-     */
-    private String firstName;
-    
-    /**
-     * The last name of the user
-     */
-    private String lastName;
     
     /**
      * The full name of the user
      */
     private String fullName;
-    
-    /**
-     * The email address of the user
-     */
-    private String email;
     
     /**
      * The sub token of the user, used for authentication
