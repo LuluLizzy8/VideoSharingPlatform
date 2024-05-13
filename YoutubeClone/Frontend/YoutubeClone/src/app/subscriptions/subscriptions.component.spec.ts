@@ -14,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatCardModule  // Add MatCardModule here
+    MatCardModule 
   ],
   providers: [],
   bootstrap: [SubscriptionsComponent]
@@ -28,7 +28,6 @@ describe('SubscriptionsComponent', () => {
   let mockUserService: any;
 
   beforeEach(async () => {
-    // Create a mock for UserService with an observable that returns an array of user names
     mockUserService = jasmine.createSpyObj('UserService', ['getSubscriptions']);
     mockUserService.getSubscriptions.and.returnValue(of(['User One', 'User Two', 'User Three']));
 
@@ -45,7 +44,7 @@ describe('SubscriptionsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SubscriptionsComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();  // trigger initial data binding
+    fixture.detectChanges(); 
   });
   
   it('should create', () => {
@@ -53,13 +52,11 @@ describe('SubscriptionsComponent', () => {
   });
 
   it('should load subscribed user names on init', () => {
-    // After ngOnInit, the subscribedUserNames should be filled with the mock data
     expect(component.subscribedUserNames.length).toBe(3);
     expect(component.subscribedUserNames).toEqual(['User One', 'User Two', 'User Three']);
     expect(mockUserService.getSubscriptions).toHaveBeenCalled();
   });
 
-  // You can add more tests here to check for potential error handling or different response scenarios
 });
 
 

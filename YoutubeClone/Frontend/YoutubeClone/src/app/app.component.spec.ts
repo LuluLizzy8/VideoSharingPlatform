@@ -1,43 +1,69 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ProfileComponent } from './profile/profile.component';
+import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { UserService } from './user.service';
+import { of } from 'rxjs';
 
-describe('ProfileComponent', () => {
-  let component: ProfileComponent;
-  let fixture: ComponentFixture<ProfileComponent>;
-  let userServiceMock: jasmine.SpyObj<UserService>;
+describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let mockOidcSecurityService: any;
+  let mockUserService: any;
 
   beforeEach(async () => {
-    // Create a spy object for UserService with a mock method 'getUserId'
-    userServiceMock = jasmine.createSpyObj('UserService', ['getUserId']);
+    // Mock the services
+    mockOidcSecurityService = jasmine.createSpyObj('OidcSecurityService', ['checkAuth']);
+    mockUserService = jasmine.createSpyObj('UserService', ['registerUser']);
 
+    // Configure testing module
     await TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ],
-      // Provide the mock instead of the actual UserService
-      providers: [ { provide: UserService, useValue: userServiceMock } ]
+      declarations: [ AppComponent ],
+      providers: [
+        { provide: OidcSecurityService, useValue: mockOidcSecurityService },
+        { provide: UserService, useValue: mockUserService }
+      ]
     }).compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileComponent);
+    // Create component fixture
+    fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-    
-    // Mock the return value of getUserId
-    userServiceMock.getUserId.and.returnValue('user123');
-    
-    // Trigger initial data binding and ngOnInit lifecycle hook
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set userId based on UserService', () => {
-    // Ensure the service method is called
-    expect(userServiceMock.getUserId).toHaveBeenCalled();
+  it('should check authentication and register user if authenticated', fakeAsync(() => {
+    // Setup the return value of checkAuth
+    mockOidcSecurityService.checkAuth.and.returnValue(of({ isAuthenticated: true }));
 
-    // Check if the component's userId is updated correctly
-    expect(component.userId).toEqual('user123');
+    // Trigger ngOnInit
+    fixture.detectChanges();  // ngOnInit gets called here
+    tick();  // Simulate the passage of time until all async operations are complete
+
+    // Verify the service methods are called appropriately
+    expect(mockOidcSecurityService.checkAuth).toHaveBeenCalled();
+    expect(mockUserService.registerUser).toHaveBeenCalled();
+    expect(console.log).toHaveBeenCalledWith('app is authenticated', true);
+    expect(console.log).toHaveBeenCalledWith('registered user');
+  }));
+
+  it('should not register user if not authenticated', fakeAsync(() => {
+    // Setup the return value of checkAuth to simulate not authenticated
+    mockOidcSecurityService.checkAuth.and.returnValue(of({ isAuthenticated: false }));
+
+    // Trigger ngOnInit
+    fixture.detectChanges();  // ngOnInit gets called here
+    tick();  // Simulate the passage of time until all async operations are complete
+
+    // Verify the service methods are called appropriately
+    expect(mockOidcSecurityService.checkAuth).toHaveBeenCalled();
+    expect(mockUserService.registerUser).not.toHaveBeenCalled();
+    expect(console.log).toHaveBeenCalledWith('app is authenticated', false);
+  }));
+
+  afterEach(() => {
+    // Restore the original console.log to avoid side effects
+    spyOn(console, 'log');
   });
 });

@@ -15,7 +15,6 @@ describe('FeaturedComponent', () => {
  ];
 
  beforeEach(async () => {
-   // Create a spy for the VideoService
    mockVideoService = jasmine.createSpyObj('VideoService', ['getAllVideos']);
    mockVideoService.getAllVideos.and.returnValue(of(mockVideos));
 
@@ -24,13 +23,13 @@ describe('FeaturedComponent', () => {
      providers: [
        { provide: VideoService, useValue: mockVideoService }
      ],
-     schemas: [CUSTOM_ELEMENTS_SCHEMA] // Add this to handle any unknown elements in the template
+     schemas: [CUSTOM_ELEMENTS_SCHEMA]
    })
    .compileComponents();
 
    fixture = TestBed.createComponent(FeaturedComponent);
    component = fixture.componentInstance;
-   fixture.detectChanges(); // triggers ngOnInit
+   fixture.detectChanges();
  });
 
  it('should create', () => {
@@ -38,16 +37,14 @@ describe('FeaturedComponent', () => {
  });
 
  it('should load featured videos on init', () => {
-   // Check if the VideoService was called
    expect(mockVideoService.getAllVideos).toHaveBeenCalled();
 
-   // Check if the component correctly updated its featuredVideos property
    expect(component.featuredVideos.length).toBe(2);
    expect(component.featuredVideos).toEqual(mockVideos);
  });
 
  it('should display the correct number of video cards', () => {
-   fixture.detectChanges(); // Update view with fetched videos
+   fixture.detectChanges();
    const compiled = fixture.nativeElement as HTMLElement;
    const videoCards = compiled.querySelectorAll('app-video-card');
    expect(videoCards.length).toEqual(2);

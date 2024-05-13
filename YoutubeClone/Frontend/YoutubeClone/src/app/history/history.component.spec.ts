@@ -17,7 +17,6 @@ describe('HistoryComponent', () => {
 
 
   beforeEach(async () => {
-    // Create a spy for the VideoService with a mock 'getVideoHistory' method
     mockVideoService = jasmine.createSpyObj('VideoService', ['getVideoHistory']);
     mockVideoService.getVideoHistory.and.returnValue(of(mockVideos));
 
@@ -27,13 +26,13 @@ describe('HistoryComponent', () => {
       providers: [
         { provide: VideoService, useValue: mockVideoService }
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA] // This will ignore any unknown elements and attributes
+      schemas: [CUSTOM_ELEMENTS_SCHEMA] 
     })
     .compileComponents();
     
     fixture = TestBed.createComponent(HistoryComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges(); // triggers ngOnInit
+    fixture.detectChanges(); 
   });
 
 
@@ -43,21 +42,19 @@ describe('HistoryComponent', () => {
 
 
   it('should load video history on init', () => {
-    // Check if the VideoService was called
     expect(mockVideoService.getVideoHistory).toHaveBeenCalled();
 
 
-    // Check if the component correctly updated its historyVideos property
     expect(component.historyVideos.length).toBe(2);
     expect(component.historyVideos).toEqual(mockVideos);
   });
 
 
   it('should display the correct number of video cards', () => {
-    fixture.detectChanges(); // Update the view with the fetched videos
+    fixture.detectChanges(); 
     const compiled = fixture.nativeElement as HTMLElement;
     const videoCards = compiled.querySelectorAll('app-video-card');
-    expect(videoCards.length).toEqual(2); // Expect two video cards as per mock data
+    expect(videoCards.length).toEqual(2); 
   });
 });
 
