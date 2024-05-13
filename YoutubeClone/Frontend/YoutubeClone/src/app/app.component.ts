@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
     this.oidcSecurityService
       .checkAuth()
       .subscribe(({ isAuthenticated }) => {
-        // If LoginResponse is a type that has isAuthenticated, make sure it's imported
         console.log('app is authenticated', isAuthenticated);
         
         if(isAuthenticated == true){

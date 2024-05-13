@@ -12,8 +12,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   @Input() videoUrl!: string;
   videoId!: string;
   @ViewChild('media', { static: false }) player!: ElementRef<HTMLVideoElement>;
-  private playbackInterval!: Subscription;
-  private lastSavedPosition: number = 0; // Last saved position to avoid unnecessary network calls
+  private lastSavedPosition: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -54,7 +53,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     this.videoService.savePlaybackPosition(this.videoId, currentPosition).subscribe(
       () => {
         console.log(`Position saved successfully: ${currentPosition}`);
-        this.lastSavedPosition = currentPosition; // Update last saved position
+        this.lastSavedPosition = currentPosition;
       },
       error => console.error('Error saving position', error)
     );

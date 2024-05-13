@@ -23,8 +23,7 @@ export class VideoService {
   }
   
   getVideo(videoId: string): Observable<VideoDto> {
-	//http call to our backend
-	return this.httpClient.get<VideoDto>("http://localhost:8080/api/videos/" + videoId); //return videoDto
+	return this.httpClient.get<VideoDto>("http://localhost:8080/api/videos/" + videoId);
   }
   
   saveVideo(videoMetaData: VideoDto): Observable<VideoDto> {
@@ -44,8 +43,8 @@ export class VideoService {
   }
   
   savePlaybackPosition(videoId: string, position: number): Observable<void> {
-    const payload = { position }; // Assuming you need to send this
-    console.log("Saving position:", payload); // Debugging line
+    const payload = { position };
+    console.log("Saving position:", payload);
     return this.httpClient.post<void>(`http://localhost:8080/api/videos/savePosition/${videoId}/${position}`, payload);
 }
 

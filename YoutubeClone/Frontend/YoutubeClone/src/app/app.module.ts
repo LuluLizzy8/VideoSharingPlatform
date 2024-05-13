@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UploadVideoComponent } from './upload-video/upload-video.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, withFetch, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { MatButtonModule } from "@angular/material/button";
 import { HeaderComponent } from './header/header.component';
@@ -26,7 +26,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { VideoDetailComponent } from './video-detail/video-detail.component';
 import { AuthConfigModule } from './auth/auth-config.module';
-import { AuthInterceptor, AuthModule } from 'angular-auth-oidc-client';
+import { AuthInterceptor } from 'angular-auth-oidc-client';
 import { HomeComponent } from './home/home.component';
 import { HistoryComponent } from './history/history.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';

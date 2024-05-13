@@ -47,7 +47,6 @@ export class VideoDetailComponent {
 	
 	ngOnInit(): void {
 		this.videoService.getVideo(this.videoId).subscribe(data => {
-	      // set properties from data...
 	      this.checkSubscriptionStatus();
 	    });
 	}
