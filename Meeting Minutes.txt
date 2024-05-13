@@ -136,4 +136,4 @@ May 11:
 Elizabeth: Save video timestamp, display subscription, removed dead code, debug (allow unauthorized users to view videos, add popups to let unauthorized user know they need to login to subscribe, like or upload videos), javadoc commentation on codes in backend
 Lunjia: Unit tests, javadoc commentation on codes in frontend
 Viana: Removed dead code, debug (allow unauthorized users to view videos, add popups to let unauthorized user know they need to login to subscribe, like or upload videos), javadoc commentation on codes in backend (worked with Elizabeth)
-Smile: Unit tests, javadoc commentation on codes in frontend (worked with Lunjia)
+Smile: Unit tests, debug testings for frontend, javadoc commentation on codes in frontend, work on final documentation(record demo)
