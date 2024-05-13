@@ -10,8 +10,8 @@ describe('FeaturedComponent', () => {
  let fixture: ComponentFixture<FeaturedComponent>;
  let mockVideoService: any;
  const mockVideos: VideoDto[] = [
-   { id: '1', userId:'1', userName:'A', title: 'Video 1', description: 'Desc 1', videoUrl: 'url1', thumbnailUrl: 'thumb1', viewCount: 100, likes: 10 },
-   { id: '2', userId:'1', userName:'A', title: 'Video 2', description: 'Desc 2', videoUrl: 'url2', thumbnailUrl: 'thumb2', viewCount: 200, likes: 20 }
+   { id: '1', userId:'11', userName:'A', title: 'Video 1', description: 'Desc 1', videoUrl: 'url1', thumbnailUrl: 'thumb1', viewCount: 100, likes: 10 },
+   { id: '2', userId:'22', userName:'B', title: 'Video 2', description: 'Desc 2', videoUrl: 'url2', thumbnailUrl: 'thumb2', viewCount: 200, likes: 20 }
  ];
 
  beforeEach(async () => {
