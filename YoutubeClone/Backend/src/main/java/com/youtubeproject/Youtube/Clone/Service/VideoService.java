@@ -134,7 +134,7 @@ public class VideoService {
 	 * @param video The Video object to map
 	 * @return The VideoDto object
 	 */
-	private VideoDto mapToVideoDto(Video video) {
+	public VideoDto mapToVideoDto(Video video) {
 		VideoDto videoDto = new VideoDto();
 		videoDto.setVideoUrl(video.getVideoUrl());
 		videoDto.setThumbnailUrl(video.getThumbnailUrl());
