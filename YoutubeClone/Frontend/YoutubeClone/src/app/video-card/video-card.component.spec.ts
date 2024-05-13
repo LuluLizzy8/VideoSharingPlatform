@@ -4,7 +4,6 @@ import { VideoDto } from "../video-dto";
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-
 describe('VideoCardComponent', () => {
   let component: VideoCardComponent;
   let fixture: ComponentFixture<VideoCardComponent>;
@@ -20,37 +19,31 @@ describe('VideoCardComponent', () => {
     likes: 10
   };
 
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ VideoCardComponent ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA] // to ignore elements like mat-card
-    })
-    .compileComponents();
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
   
     fixture = TestBed.createComponent(VideoCardComponent);
     component = fixture.componentInstance;
-    component.video = testVideo; // Set input
-    fixture.detectChanges(); // Update the component with the input
+    component.video = testVideo; 
+    fixture.detectChanges();
   });
-
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 
   it('should display video title', () => {
     const titleElement = fixture.debugElement.query(By.css('mat-card-title')).nativeElement;
     expect(titleElement.textContent).toContain(testVideo.title);
   });
 
-
   it('should display video uploader', () => {
     const subtitleElement = fixture.debugElement.query(By.css('mat-card-subtitle')).nativeElement;
     expect(subtitleElement.textContent).toContain(`Uploader: ${testVideo.userName}`);
   });
-
 
   it('should display view count', () => {
     const viewsElement = fixture.debugElement.queryAll(By.css('mat-card-subtitle'))[1].nativeElement;
@@ -62,8 +55,3 @@ describe('VideoCardComponent', () => {
     expect(imgElement.src).toBe(testVideo.thumbnailUrl);
   });
 });
-
-
-
-
-

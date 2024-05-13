@@ -12,7 +12,6 @@ describe('ProfileComponent', () => {
 
 
   beforeEach(async () => {
-    // Create a spy for UserService
     mockUserService = jasmine.createSpyObj('UserService', ['getUserId']);
     mockUserService.getUserId.and.returnValue(mockUserId);
 
@@ -20,7 +19,7 @@ describe('ProfileComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ProfileComponent],
       providers: [
-        { provide: UserService, useValue: mockUserService } // Provide the mock service
+        { provide: UserService, useValue: mockUserService }
       ]
     })
     .compileComponents();
@@ -38,15 +37,12 @@ describe('ProfileComponent', () => {
 
 
   it('should initialize userId from UserService', () => {
-    // Verify the userId is fetched from the UserService
     expect(component.userId).toEqual(mockUserId);
-    // Verify that the service method was called
     expect(mockUserService.getUserId).toHaveBeenCalled();
   });
 
 
   it('should display the userId in the template', () => {
-    // Check if the rendered userId is the same as the one fetched from the service
     const userIdParagraph = fixture.debugElement.query(By.css('p')).nativeElement.textContent;
     expect(userIdParagraph).toContain(mockUserId);
   });

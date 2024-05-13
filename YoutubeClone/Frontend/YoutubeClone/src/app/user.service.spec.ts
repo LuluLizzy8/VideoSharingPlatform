@@ -27,7 +27,7 @@ describe('UserService', () => {
 
     const req = httpController.expectOne(`http://localhost:8080/api/user/subscribe/${userId}`);
     expect(req.request.method).toBe('POST');
-    req.flush(true); // Simulating a successful subscription
+    req.flush(true); 
   });
 
   it('should unsubscribe from a user', () => {
@@ -38,7 +38,7 @@ describe('UserService', () => {
 
     const req = httpController.expectOne(`http://localhost:8080/api/user/unsubscribe/${userId}`);
     expect(req.request.method).toBe('POST');
-    req.flush(true); // Simulating a successful unsubscription
+    req.flush(true); 
   });
 
   it('should register a user and set userId', () => {
@@ -47,6 +47,6 @@ describe('UserService', () => {
     const req = httpController.expectOne('http://localhost:8080/api/user/register');
     req.flush(expectedUserId);
 
-    expect(service.getUserId()).toBe(expectedUserId); // Check if userId was updated correctly
+    expect(service.getUserId()).toBe(expectedUserId);
   });
 });
